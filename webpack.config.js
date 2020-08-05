@@ -19,13 +19,29 @@ module.exports = {
       {
         // matching conditions for files ending in .js or .jsx
         test: /\.jsx?$/,
+        exclude: /(node_modules)/,
         // the loader which should be applied, it'll be resolved relative to the context
         loader: "babel-loader",
       },
       {
         // matching conditions for files ending in .css
-        test: /\.css$/,
-        loader: ["style-loader", "css-loader"],
+        test: /\.s[ac]ss$/,
+        use: [
+          // Creates `style` nodes from JS strings
+          "style-loader",
+          // Translates CSS into CommonJS
+          "css-loader",
+          {
+            loader: "sass-loader",
+            options: {
+              // Prefer `node-sass`
+              implementation: require("node-sass"),
+              sassOptions: {
+                includePaths: [path.resolve(__dirname, "sass/main.scss")],
+              },
+            },
+          },
+        ],
       },
     ],
   },

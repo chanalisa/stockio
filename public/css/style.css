@@ -4,11 +4,11 @@
   box-sizing: inherit; }
 
 html {
-  font-size: 62.5%; }
+  font-size: 100%; }
 
 /* https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
 body {
   box-sizing: border-box; }
 
 body {
-  font-family: "Quicksand", sans-serif; }
+  font-family: "Arial", sans-serif; }
