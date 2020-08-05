@@ -2,6 +2,9 @@ const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
 
+// Sequelize instance
+const db = require("./db/database");
+
 const app = express();
 const PORT = 8080;
 
@@ -36,4 +39,13 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500).send(err.message || "Internal server error.");
 });
 
-app.listen(PORT, () => console.log(`Server is listening on port: ${PORT}`));
+async function startServer() {
+  // sync database
+  await db.sync();
+  // start listening with express server once synced
+  await app.listen(PORT, () =>
+    console.log(`Server is listening on port: ${PORT}`)
+  );
+}
+
+startServer();

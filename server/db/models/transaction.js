@@ -17,14 +17,13 @@ const Transaction = db.define("transaction", {
       notEmpty: true,
     },
   },
+  // price in pennies
   priceAtTransaction: {
     type: Sequelize.INTEGER,
     allowNull: false,
     validate: {
       notEmpty: true,
       min: 0,
-      max: 999999999,
-      // price in pennies
     },
   },
   quantity: {
