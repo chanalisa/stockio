@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "build-client-watch": "webpack -w",
+    "compile:sass": "node-sass public/sass/main.scss public/css/style.css -w",
     "start": "node server",
     "start-dev": "webpack -w & nodemon server",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -25,6 +26,9 @@
     "@babel/preset-env": "^7.11.0",
     "@babel/preset-react": "^7.10.4",
     "babel-loader": "^8.1.0",
+    "css-loader": "^4.2.0",
+    "node-sass": "^4.14.1",
+    "style-loader": "^1.2.1",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
   },

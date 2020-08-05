@@ -22,6 +22,11 @@ module.exports = {
         // the loader which should be applied, it'll be resolved relative to the context
         loader: "babel-loader",
       },
+      {
+        // matching conditions for files ending in .css
+        test: /\.css$/,
+        loader: ["style-loader", "css-loader"],
+      },
     ],
   },
 };
