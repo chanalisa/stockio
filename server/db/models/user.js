@@ -42,10 +42,14 @@ const User = db.define("user", {
   },
 });
 
+/* INSTANCE METHOD */
+
 // check for correct password
 User.prototype.correctPassword = function (enteredPassword) {
   return User.encryptPassword(enteredPassword, this.salt()) === this.password();
 };
+
+/* CLASS METHODS */
 
 // generate salt
 User.generateSalt = function () {
@@ -53,12 +57,22 @@ User.generateSalt = function () {
 };
 
 // salt password
-User.encryptPassword = function (password, salt) {
+User.encryptPassword = function (plainText, salt) {
   return crypto
     .createHash("RSA-SHA256")
-    .update(password)
+    .update(plainText)
     .update(salt)
     .digest("hex");
 };
+
+const setSaltAndPassword = (user) => {
+  if (user.changed("password")) {
+    user.salt = User.generateSalt();
+    user.password = User.encryptPassword(user.password(), user.salt());
+  }
+};
+
+User.beforeCreate(setSaltAndPassword);
+User.beforeUpdate(setSaltAndPassword);
 
 module.exports = User;

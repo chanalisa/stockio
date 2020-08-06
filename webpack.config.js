@@ -1,5 +1,7 @@
 const path = require("path");
 
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
 module.exports = {
   // Chosen mode tells webpack to use its built-in optimizations accordingly
   mode: "development",
@@ -12,6 +14,14 @@ module.exports = {
     // the filename template for entry chunks
     filename: "bundle.js",
   },
+  plugins: [
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: "[name].css",
+      chunkFilename: "[id].css",
+    }),
+  ],
   // configuration regarding modules
   module: {
     // rules for modules (configure loaders, parser options, etc.)
@@ -25,22 +35,29 @@ module.exports = {
       },
       {
         // matching conditions for files ending in .css
-        test: /\.s[ac]ss$/,
+        // test: /\.s[ac]ss$/,
+        test: /\.css$/,
+        exclude: /(node_modules)/,
+        // include: path.resolve(__dirname, "public/sass/main.scss"),
         use: [
           // Creates `style` nodes from JS strings
           "style-loader",
           // Translates CSS into CommonJS
+          // MiniCssExtractPlugin.loader,
           "css-loader",
-          {
-            loader: "sass-loader",
-            options: {
-              // Prefer `node-sass`
-              implementation: require("node-sass"),
-              sassOptions: {
-                includePaths: [path.resolve(__dirname, "sass/main.scss")],
-              },
-            },
-          },
+          "sass-loader",
+          // {
+          //   loader: "sass-loader",
+          //   options: {
+          //     // Prefer `node-sass`
+          //     implementation: require("node-sass"),
+          //     options: {
+          //       includePaths: [
+          //         path.resolve(__dirname, "public/sass/main.scss"),
+          //       ],
+          //     },
+          //   },
+          // },
         ],
       },
     ],

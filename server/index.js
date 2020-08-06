@@ -16,15 +16,21 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // API routes
+app.use("/auth", require("./auth"));
 
 // static file-serving middleware
 app.use(express.static(path.join(__dirname, "..", "public")));
 
-// 404 error handler
+// 404 error handler for any remaining requests with an extension (.js, .css, etc.)
 app.use((req, res, next) => {
-  const err = new Error("Not found");
-  err.status = 404;
-  next(err);
+  if (path.extname(req.path).length) {
+    const err = new Error("Not found");
+    err.status = 404;
+    next(err);
+    console.log(req.path);
+  } else {
+    next();
+  }
 });
 
 // sends index.html
