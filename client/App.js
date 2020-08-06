@@ -1,7 +1,13 @@
 import React from "react";
+import Routes from "./routes";
 
 export default class App extends React.Component {
   render() {
-    return <div>Hello World!</div>;
+    return (
+      <div>
+        <div>Hello World!</div>
+        {/* <Routes /> */}
+      </div>
+    );
   }
 }

@@ -1,9 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 
-class LogIn extends React.Component {
+class SignUp extends React.Component {
   constructor() {
     this.state = {
+      firstName: "",
+      lastName: "",
       email: "",
       password: "",
     };
@@ -20,6 +22,8 @@ class LogIn extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     this.setState({
+      firstName: "",
+      lastName: "",
       email: "",
       password: "",
     });
@@ -28,8 +32,26 @@ class LogIn extends React.Component {
   render() {
     return (
       <div>
-        <h1>Log In</h1>
-        <form name="login" onSubmit={this.handleSubmit}>
+        <h1>Sign Up</h1>
+        <form name="signup" onSubmit={this.handleSubmit}>
+          <label>
+            First Name
+            <input
+              type="text"
+              name="firstName"
+              value={this.state.firstName}
+              onChange={this.handleChange}
+            />
+          </label>
+          <label>
+            Last Name
+            <input
+              type="text"
+              name="lastName"
+              value={this.state.lastName}
+              onChange={this.handleChange}
+            />
+          </label>
           <label>
             Email
             <input
@@ -48,7 +70,7 @@ class LogIn extends React.Component {
               onChange={this.handleChange}
             />
           </label>
-          <button type="submit">Log In</button>
+          <button type="submit">Sign Up</button>
         </form>
       </div>
     );
@@ -59,4 +81,4 @@ const mapDispatchToProps = (dispatch) => {
   return dispatch(logIn(this.state));
 };
 
-export default connect(null, mapDispatchToProps)(LogIn);
+export default connect(null, mapDispatchToProps)(SignUp);

@@ -14,14 +14,14 @@ module.exports = {
     // the filename template for entry chunks
     filename: "bundle.js",
   },
-  plugins: [
-    new MiniCssExtractPlugin({
-      // Options similar to the same options in webpackOptions.output
-      // both options are optional
-      filename: "[name].css",
-      chunkFilename: "[id].css",
-    }),
-  ],
+  // plugins: [
+  //   new MiniCssExtractPlugin({
+  //     // Options similar to the same options in webpackOptions.output
+  //     // both options are optional
+  //     filename: "[name].css",
+  //     chunkFilename: "[id].css",
+  //   }),
+  // ],
   // configuration regarding modules
   module: {
     // rules for modules (configure loaders, parser options, etc.)

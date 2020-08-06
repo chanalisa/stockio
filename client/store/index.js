@@ -1,10 +1,12 @@
-import { createStore, applyMiddleware } from "redux";
+import { combineReducers, createStore, applyMiddleware } from "redux";
 import thunkMiddleware from "redux-thunk";
 import { createLogger } from "redux-logger";
 
-function reducer(state = {}, action) {
-  return state;
-}
+import userReducer from "./user";
+
+const reducer = combineReducers({
+  user: userReducer,
+});
 
 const store = createStore(
   reducer,
