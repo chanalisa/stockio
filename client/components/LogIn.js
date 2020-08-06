@@ -1,8 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 
+import { logIn } from "../store";
+
 class LogIn extends React.Component {
   constructor() {
+    super();
     this.state = {
       email: "",
       password: "",
@@ -44,7 +47,7 @@ class LogIn extends React.Component {
             <input
               type="password"
               name="password"
-              value={this.state.email}
+              value={this.state.password}
               onChange={this.handleChange}
             />
           </label>
@@ -55,8 +58,9 @@ class LogIn extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return dispatch(logIn(this.state));
-};
+// const mapDispatchToProps = (dispatch) => {
+//   return dispatch(logIn(this.state));
+// };
 
-export default connect(null, mapDispatchToProps)(LogIn);
+// export default connect(null, mapDispatchToProps)(LogIn);
+export default LogIn;
