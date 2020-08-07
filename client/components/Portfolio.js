@@ -1,12 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 
+import { logout } from "../store";
+
 const Portfolio = (props) => {
-  // console.log(props);
+  const { logOut } = props;
   return (
     <div>
       <p>YAY</p>
-      <button>Log Out</button>
+      <button onClick={logOut}>Log Out</button>
     </div>
   );
 };
@@ -18,4 +20,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Portfolio);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logOut: () => dispatch(logout()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Portfolio);
