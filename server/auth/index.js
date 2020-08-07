@@ -2,7 +2,18 @@ const router = require("express").Router();
 const jwt = require("jsonwebtoken");
 
 const User = require("../db/models").User;
-const config = require("../../secrets");
+const APP_SECRET = process.env.APP_SECRET;
+
+const verifyToken = (req, res, next) => {
+  const bearerHeaders = req.headers["authorization"];
+  if (bearerHeaders) {
+    const bearerToken = bearerHeaders.split(" ")[1];
+    req.token = bearerToken;
+    next();
+  } else {
+    res.sendStatus(403);
+  }
+};
 
 router.post("/login", async (req, res, next) => {
   try {
@@ -21,7 +32,7 @@ router.post("/login", async (req, res, next) => {
       res.status(401).send("Wrong email and/or password");
       // if the user successfully logs in provide a JWT
     } else {
-      const token = jwt.sign({ user }, "secret");
+      const token = jwt.sign({ user }, APP_SECRET);
       res
         .status(200)
         .json({ user, token, message: "user successfully logged in" });
@@ -47,5 +58,15 @@ router.post("/signup", async (req, res, next) => {
 });
 
 router.delete("/logout", (req, res, next) => {});
+
+router.get("/me", verifyToken, (req, res) => {
+  jwt.verify(req.token, APP_SECRET, (error, authData) => {
+    if (error) {
+      res.sendStatus(403);
+    } else {
+      res.json(authData);
+    }
+  });
+});
 
 module.exports = router;

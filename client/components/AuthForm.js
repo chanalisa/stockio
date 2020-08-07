@@ -102,7 +102,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     handleSubmit(event) {
       event.preventDefault;
-      // localStorage.clear();
+      localStorage.clear();
       const authFormName = event.target.name;
       const email = event.target.email.value;
       const password = event.target.password.value;

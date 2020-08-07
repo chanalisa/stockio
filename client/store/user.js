@@ -42,49 +42,52 @@ export const auth = (
           password,
         })
       : await axios.post(`/auth/${method}`, { email, password });
+    console.log(res);
   } catch (authError) {
     return dispatch(gotUser(authError));
   }
   try {
     dispatch(gotUser(res.data));
-    console.log(res.data.token);
-    localStorage.setItem("token", res.data.token);
+    console.log("here");
+    // console.log(res.data);
+    // localStorage.setItem("token", res.data.token);
+    localStorage.setItem("user", JSON.stringify(res.data));
     // history.push("/portfolio");
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr);
   }
 };
 
-export const logIn = (email, password) => async (dispatch) => {
-  let res;
-  try {
-    res = await axios.post("/auth/login", { email, password });
-  } catch (authError) {
-    return dispatch(loggedIn(authError));
-  }
-  try {
-    dispatch(loggedIn(res.data));
-    localStorage.setItem("token", res.data.token);
-    // history.push("/portfolio");
-  } catch (dispatchOrHistoryErr) {
-    console.error(dispatchOrHistoryErr);
-  }
-};
+// export const logIn = (email, password) => async (dispatch) => {
+//   let res;
+//   try {
+//     res = await axios.post("/auth/login", { email, password });
+//   } catch (authError) {
+//     return dispatch(loggedIn(authError));
+//   }
+//   try {
+//     dispatch(loggedIn(res.data));
+//     localStorage.setItem("token", res.data.token);
+//     // history.push("/portfolio");
+//   } catch (dispatchOrHistoryErr) {
+//     console.error(dispatchOrHistoryErr);
+//   }
+// };
 
-export const signUp = (user) => async (dispatch) => {
-  let res;
-  try {
-    res = await axios.post("/auth/signup", user);
-  } catch (authError) {
-    return dispatch(loggedIn(authError));
-  }
-  try {
-    dispatch(loggedIn(res.data));
-    // history.push('/home')
-  } catch (dispatchOrHistoryErr) {
-    console.error(dispatchOrHistoryErr);
-  }
-};
+// export const signUp = (user) => async (dispatch) => {
+//   let res;
+//   try {
+//     res = await axios.post("/auth/signup", user);
+//   } catch (authError) {
+//     return dispatch(loggedIn(authError));
+//   }
+//   try {
+//     dispatch(loggedIn(res.data));
+//     // history.push('/home')
+//   } catch (dispatchOrHistoryErr) {
+//     console.error(dispatchOrHistoryErr);
+//   }
+// };
 
 /**
  * REDUCER

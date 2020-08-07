@@ -8,6 +8,8 @@ const db = require("./db/database");
 const app = express();
 const PORT = 8080;
 
+require("dotenv").config();
+
 // logging middleware
 app.use(morgan("dev"));
 
