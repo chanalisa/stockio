@@ -2,12 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { Router } from "react-router-dom";
-import { createBrowserHistory } from "history";
 
 import App from "./app";
 import store from "./store";
-
-const history = createBrowserHistory();
+import history from "./history";
 
 ReactDOM.render(
   <Provider store={store}>

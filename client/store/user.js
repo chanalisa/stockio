@@ -1,4 +1,5 @@
 import axios from "axios";
+import history from "../history";
 
 /**
  * ACTION TYPES
@@ -54,7 +55,7 @@ export const auth = (
     dispatch(gotUser(res.data));
     // localStorage.setItem("token", res.data.token);
     localStorage.setItem("token", res.data.token);
-    // history.push("/portfolio");
+    history.push("/portfolio");
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr);
   }
@@ -70,6 +71,7 @@ export const me = () => async (dispatch) => {
     });
     if (res) {
       dispatch(gotUser(res.data));
+      history.push("/portfolio");
     } else {
       dispatch(gotUser(defaultUser));
     }
