@@ -6,6 +6,7 @@ import axios from "axios";
 
 const LOGGED_IN = "LOGGED_IN";
 const GOT_USER = "GOT_USER";
+const REMOVED_USER = "REMOVED_USER";
 
 /**
  * ACTION CREATORS
@@ -19,6 +20,10 @@ const loggedIn = (user) => ({
 const gotUser = (user) => ({
   type: GOT_USER,
   user,
+});
+
+const removedUser = () => ({
+  type: REMOVED_USER,
 });
 
 /**
@@ -42,19 +47,45 @@ export const auth = (
           password,
         })
       : await axios.post(`/auth/${method}`, { email, password });
-    console.log(res);
   } catch (authError) {
     return dispatch(gotUser(authError));
   }
   try {
     dispatch(gotUser(res.data));
-    console.log("here");
-    // console.log(res.data);
     // localStorage.setItem("token", res.data.token);
-    localStorage.setItem("user", JSON.stringify(res.data));
+    localStorage.setItem("token", res.data.token);
     // history.push("/portfolio");
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr);
+  }
+};
+
+export const me = () => async (dispatch) => {
+  try {
+    const token = localStorage.getItem("token");
+    const res = await axios.get("/auth/me", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (res) {
+      dispatch(gotUser(res.data));
+    } else {
+      dispatch(gotUser({}));
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const logout = () => async (dispatch) => {
+  try {
+    localStorage.removeItem("token");
+    await axios.post("/auth/logout");
+    dispatch(removeUser());
+    history.push("/login");
+  } catch (err) {
+    console.error(err);
   }
 };
 

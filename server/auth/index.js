@@ -6,6 +6,7 @@ const APP_SECRET = process.env.APP_SECRET;
 
 const verifyToken = (req, res, next) => {
   const bearerHeaders = req.headers["authorization"];
+  console.log(req.headers);
   if (bearerHeaders) {
     const bearerToken = bearerHeaders.split(" ")[1];
     req.token = bearerToken;
@@ -61,11 +62,11 @@ router.delete("/logout", (req, res, next) => {});
 
 router.get("/me", verifyToken, (req, res) => {
   jwt.verify(req.token, APP_SECRET, (error, authData) => {
-    if (error) {
-      res.sendStatus(403);
-    } else {
-      res.json(authData);
-    }
+    // if (error) {
+    //   res.sendStatus(403);
+    // } else {
+    res.json(authData);
+    // }
   });
 });
 
