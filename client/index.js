@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import { Router } from "react-router-dom";
 import { createBrowserHistory } from "history";
 
-import App from "./App";
+import App from "./app";
 import store from "./store";
 
 const history = createBrowserHistory();
