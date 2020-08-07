@@ -6,7 +6,6 @@ const APP_SECRET = process.env.APP_SECRET;
 
 const verifyToken = (req, res, next) => {
   const bearerHeaders = req.headers["authorization"];
-  console.log(req.headers);
   if (bearerHeaders) {
     const bearerToken = bearerHeaders.split(" ")[1];
     req.token = bearerToken;

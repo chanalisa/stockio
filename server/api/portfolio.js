@@ -1,6 +1,3 @@
-const { Portfolio } = require("../db/models");
-const { get } = require("../auth");
-
 const router = require("express").Router();
 
 const User = require("../db/models").User;
@@ -20,3 +17,5 @@ router.get("/", async (req, res, next) => {
     console.error(error);
   }
 });
+
+module.exports = router;

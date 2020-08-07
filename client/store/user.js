@@ -69,11 +69,12 @@ export const me = () => async (dispatch) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    if (res) {
+    if (res.data) {
       dispatch(gotUser(res.data));
       history.push("/portfolio");
     } else {
       dispatch(gotUser(defaultUser));
+      history.push("/login");
     }
   } catch (err) {
     console.error(err);

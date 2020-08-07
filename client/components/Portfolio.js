@@ -1,9 +1,21 @@
 import React from "react";
+import { connect } from "react-redux";
 
-class Portfolio extends React.Component {
-  render() {
-    return <div>YAY</div>;
-  }
-}
+const Portfolio = (props) => {
+  // console.log(props);
+  return (
+    <div>
+      <p>YAY</p>
+      <button>Log Out</button>
+    </div>
+  );
+};
 
-export default Portfolio;
+const mapStateToProps = (state) => {
+  console.log(state);
+  return {
+    user: state.user.user,
+  };
+};
+
+export default connect(mapStateToProps)(Portfolio);
