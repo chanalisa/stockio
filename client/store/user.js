@@ -71,7 +71,7 @@ export const me = () => async (dispatch) => {
     if (res) {
       dispatch(gotUser(res.data));
     } else {
-      dispatch(gotUser({}));
+      dispatch(gotUser(defaultUser));
     }
   } catch (err) {
     console.error(err);
@@ -82,7 +82,7 @@ export const logout = () => async (dispatch) => {
   try {
     localStorage.removeItem("token");
     await axios.post("/auth/logout");
-    dispatch(removeUser());
+    dispatch(removedUser());
     history.push("/login");
   } catch (err) {
     console.error(err);
@@ -121,15 +121,23 @@ export const logout = () => async (dispatch) => {
 // };
 
 /**
+ * INITIAL STATE
+ */
+
+const defaultUser = {};
+
+/**
  * REDUCER
  */
 
-export default function (state = {}, action) {
+export default function (state = defaultUser, action) {
   switch (action.type) {
     case LOGGED_IN:
       return action.user;
     case GOT_USER:
       return action.user;
+    case REMOVED_USER:
+      return defaultUser;
     default:
       return state;
   }
