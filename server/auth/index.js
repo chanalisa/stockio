@@ -2,6 +2,7 @@ const router = require("express").Router();
 const jwt = require("jsonwebtoken");
 
 const User = require("../db/models").User;
+const config = require("../../secrets");
 
 router.post("/login", async (req, res, next) => {
   try {
@@ -20,7 +21,7 @@ router.post("/login", async (req, res, next) => {
       res.status(401).send("Wrong email and/or password");
       // if the user successfully logs in provide a JWT
     } else {
-      const token = jwt.sign({ user }, "secretKey");
+      const token = jwt.sign({ user }, "secret");
       res
         .status(200)
         .json({ user, token, message: "user successfully logged in" });
@@ -33,7 +34,7 @@ router.post("/login", async (req, res, next) => {
 router.post("/signup", async (req, res, next) => {
   try {
     const user = await User.create(req.body);
-    const token = jwt.sign({ user }, "secretKey");
+    const token = jwt.sign({ user }, APP_SECRET);
     res.status(200).json({ user, token, message: "user successfully created" });
   } catch (error) {
     // if someone attempts to create an account with an email already in the db

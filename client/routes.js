@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter, Route, Switch } from "react-router-dom";
 
-import { LogIn, SignUp, Transactions } from "./components";
+import { LogIn, Portfolio, SignUp, Transactions } from "./components";
 
 class Routes extends Component {
   render() {
@@ -10,10 +10,11 @@ class Routes extends Component {
       <Switch>
         <Route path="/login" component={LogIn} />
         <Route path="/signup" component={SignUp} />
-        <Route path="/transactions" component={Transactions} />
+        {/* <Route path="/transactions" component={Transactions} />
+        <Route path="/portfolio" component={Portfolio} /> */}
       </Switch>
     );
   }
 }
 
-export default withRouter(Routes);
+export default withRouter(connect(null, null)(Routes));

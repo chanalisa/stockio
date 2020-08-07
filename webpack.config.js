@@ -22,6 +22,7 @@ module.exports = {
   //     chunkFilename: "[id].css",
   //   }),
   // ],
+  devtool: "source-map",
   // configuration regarding modules
   module: {
     // rules for modules (configure loaders, parser options, etc.)

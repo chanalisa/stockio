@@ -47,8 +47,9 @@ export const auth = (
   }
   try {
     dispatch(gotUser(res.data));
+    console.log(res.data.token);
     localStorage.setItem("token", res.data.token);
-    history.push("/portfolio");
+    // history.push("/portfolio");
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr);
   }
@@ -64,7 +65,7 @@ export const logIn = (email, password) => async (dispatch) => {
   try {
     dispatch(loggedIn(res.data));
     localStorage.setItem("token", res.data.token);
-    history.push("/portfolio");
+    // history.push("/portfolio");
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr);
   }
