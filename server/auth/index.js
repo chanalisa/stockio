@@ -58,7 +58,9 @@ router.post("/signup", async (req, res, next) => {
   }
 });
 
-router.delete("/logout", (req, res, next) => {});
+router.post("/logout", (req, res, next) => {
+  res.redirect("/login");
+});
 
 router.get("/me", verifyToken, (req, res) => {
   jwt.verify(req.token, APP_SECRET, (error, authData) => {
