@@ -19,10 +19,11 @@ const loggedIn = (user) => ({
  * THUNK CREATORS
  */
 
-export const logIn = (user) => async (dispatch) => {
+export const logIn = (email, password) => async (dispatch) => {
+  console.log("here");
   let res;
   try {
-    res = await axios.post("/auth/login", user);
+    res = await axios.post("/auth/login", { email, password });
   } catch (authError) {
     return dispatch(loggedIn(authError));
   }

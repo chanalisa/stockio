@@ -6,7 +6,7 @@ module.exports = {
   // Chosen mode tells webpack to use its built-in optimizations accordingly
   mode: "development",
   // Here the application starts executing and webpack starts bundling
-  entry: "./client/index.js",
+  entry: ["@babel/polyfill", "./client/index.js"],
   // options related to how webpack emits results
   output: {
     // target directory for all output files

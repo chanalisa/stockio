@@ -3,64 +3,41 @@ import { connect } from "react-redux";
 
 import { logIn } from "../store";
 
-class LogIn extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      email: "",
-      password: "",
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+const LogIn = (props) => {
+  const { handleSubmit } = props;
 
-  handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
-  }
+  return (
+    <div>
+      <h1>Log In</h1>
+      <form name="login" onSubmit={handleSubmit}>
+        <label>
+          Email
+          <input type="email" name="email" />
+        </label>
+        <label>
+          Password
+          <input type="password" name="password" />
+        </label>
+        <button type="submit">Log In</button>
+      </form>
+    </div>
+  );
+};
 
-  handleSubmit(event) {
-    event.preventDefault();
-    this.setState({
-      email: "",
-      password: "",
-    });
-  }
+// const mapStateToProps = state => {
+//   return
+// }
 
-  render() {
-    return (
-      <div>
-        <h1>Log In</h1>
-        <form name="login" onSubmit={this.handleSubmit}>
-          <label>
-            Email
-            <input
-              type="email"
-              name="email"
-              value={this.state.email}
-              onChange={this.handleChange}
-            />
-          </label>
-          <label>
-            Password
-            <input
-              type="password"
-              name="password"
-              value={this.state.password}
-              onChange={this.handleChange}
-            />
-          </label>
-          <button type="submit">Log In</button>
-        </form>
-      </div>
-    );
-  }
-}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleSubmit(event) {
+      event.preventDefault();
+      const email = event.target.email.value;
+      const password = event.target.password.value;
+      dispatch(logIn(email, password));
+    },
+  };
+};
 
-// const mapDispatchToProps = (dispatch) => {
-//   return dispatch(logIn(this.state));
-// };
-
-// export default connect(null, mapDispatchToProps)(LogIn);
-export default LogIn;
+export default connect(null, mapDispatchToProps)(LogIn);
+// export default LogIn;
