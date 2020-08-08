@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { logout, me } from "../store";
 import { getPortfolio } from "../store/portfolio";
@@ -25,6 +26,7 @@ class Portfolio extends React.Component {
         ) : (
           <div>Nothing to see here...</div>
         )}
+        <Link to="/transactions">Transactions</Link>
         <button onClick={this.props.logOut}>Log Out</button>
       </div>
     );

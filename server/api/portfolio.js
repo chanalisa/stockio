@@ -3,6 +3,7 @@ const router = require("express").Router();
 const User = require("../db/models").User;
 const Portfolio = require("../db/models").Portfolio;
 
+// finds all instances of portfolio with given userId
 router.post("/", async (req, res, next) => {
   try {
     const stockPortfolio = await Portfolio.findAll({

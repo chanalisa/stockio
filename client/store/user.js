@@ -53,7 +53,6 @@ export const auth = (
   }
   try {
     dispatch(gotUser(res.data));
-    // localStorage.setItem("token", res.data.token);
     localStorage.setItem("token", res.data.token);
     history.push("/portfolio");
   } catch (dispatchOrHistoryErr) {
@@ -61,6 +60,7 @@ export const auth = (
   }
 };
 
+// confirms the authenticated user on state
 export const me = () => async (dispatch) => {
   try {
     const token = localStorage.getItem("token");
@@ -71,7 +71,8 @@ export const me = () => async (dispatch) => {
     });
     if (res.data) {
       dispatch(gotUser(res.data));
-      history.push("/portfolio");
+      // user is redirected to portfolio page upon successful login
+      history.location.pathname === "/login" && history.push("/portfolio");
     } else {
       dispatch(gotUser(defaultUser));
       history.push("/login");
