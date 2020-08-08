@@ -9,10 +9,12 @@ class Portfolio extends React.Component {
   constructor(props) {
     super(props);
   }
+
   componentDidMount() {
-    this.props.authorization();
+    this.props.authentication();
     this.props.getPortfolio(this.props.user);
   }
+
   render() {
     return (
       <div>
@@ -42,7 +44,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    authorization: () => dispatch(me()),
+    authentication: () => dispatch(me()),
     getPortfolio: (user) => dispatch(getPortfolio(user)),
     logOut: () => dispatch(logout()),
   };
