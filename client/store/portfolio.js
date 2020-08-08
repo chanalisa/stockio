@@ -21,9 +21,7 @@ const gotPortfolio = (portfolio) => ({
 
 export const getPortfolio = (user) => async (dispatch) => {
   try {
-    console.log("getting portfolio", user);
-    const { data } = await axios.get("/api/portfolio", user);
-    console.log("data:", data);
+    const { data } = await axios.post("/api/portfolio", user);
     dispatch(gotPortfolio(data));
   } catch (error) {
     console.error(error);

@@ -9,12 +9,10 @@ class Portfolio extends React.Component {
     super(props);
   }
   componentDidMount() {
-    console.log(this.props.user);
     this.props.authorization();
     this.props.getPortfolio(this.props.user);
   }
   render() {
-    console.log(this.props);
     return (
       <div>
         <h1>Hi, {this.props.user.firstName}!</h1>

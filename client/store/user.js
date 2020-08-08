@@ -48,7 +48,6 @@ export const auth = (
           password,
         })
       : await axios.post(`/auth/${method}`, { email, password });
-    console.log(res);
   } catch (authError) {
     return dispatch(gotUser(authError));
   }

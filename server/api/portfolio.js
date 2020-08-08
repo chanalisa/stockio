@@ -3,17 +3,12 @@ const router = require("express").Router();
 const User = require("../db/models").User;
 const Portfolio = require("../db/models").Portfolio;
 
-router.get("/", async (req, res, next) => {
+router.post("/", async (req, res, next) => {
   try {
-    console.log("back:", req.body);
-    const stockPortfolio = await User.findOne({
-      where: { id: req.body.id },
+    const stockPortfolio = await Portfolio.findAll({
+      where: { userId: req.body.id },
     });
-    if (stockPortfolio) {
-      req.portfolio = stockPortfolio;
-    } else {
-      req.portfolio = [];
-    }
+    res.json(stockPortfolio);
   } catch (error) {
     console.error(error);
   }
