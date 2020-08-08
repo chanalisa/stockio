@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import { logout, me } from "../store";
 import { getPortfolio } from "../store/portfolio";
+import OrderForm from "./OrderForm";
 
 class Portfolio extends React.Component {
   constructor(props) {
@@ -30,6 +31,7 @@ class Portfolio extends React.Component {
         )}
         <Link to="/transactions">Transactions</Link>
         <button onClick={this.props.logOut}>Log Out</button>
+        <OrderForm />
       </div>
     );
   }
