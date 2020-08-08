@@ -17,9 +17,10 @@ class Routes extends Component {
         <Route exact path="/" component={LogIn} />
         <Route path="/login" component={LogIn} />
         <Route path="/signup" component={SignUp} />
+        {/* only allow users who are logged in to access these routes */}
         {isLoggedIn && (
           <Switch>
-            {/* <Route path="/transactions" component={Transactions} /> */}
+            <Route path="/transactions" component={Transactions} />
             <Route path="/portfolio" component={Portfolio} />
           </Switch>
         )}

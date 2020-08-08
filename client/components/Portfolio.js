@@ -1,27 +1,49 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { logout } from "../store";
+import { logout, me } from "../store";
+import { getPortfolio } from "../store/portfolio";
 
-const Portfolio = (props) => {
-  const { logOut } = props;
-  return (
-    <div>
-      <p>YAY</p>
-      <button onClick={logOut}>Log Out</button>
-    </div>
-  );
-};
+class Portfolio extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  componentDidMount() {
+    console.log(this.props.user);
+    this.props.authorization();
+    this.props.getPortfolio(this.props.user);
+  }
+  render() {
+    console.log(this.props);
+    return (
+      <div>
+        <h1>Hi, {this.props.user.firstName}!</h1>
+        {this.props.portfolio.length ? (
+          <ul>
+            {this.props.portfolio.map((stock) => (
+              <li>{stock.ticker}</li>
+            ))}
+          </ul>
+        ) : (
+          <div>Nothing to see here...</div>
+        )}
+        <button onClick={this.props.logOut}>Log Out</button>
+      </div>
+    );
+  }
+}
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     user: state.user.user,
+    portfolio: state.portfolio,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    authorization: () => dispatch(me()),
+    getPortfolio: (user) => dispatch(getPortfolio(user)),
     logOut: () => dispatch(logout()),
   };
 };

@@ -5,8 +5,9 @@ const Portfolio = require("../db/models").Portfolio;
 
 router.get("/", async (req, res, next) => {
   try {
-    const stockPortfolio = await Portfolio.findAll({
-      where: { userId: req.user.id },
+    console.log("back:", req.body);
+    const stockPortfolio = await User.findOne({
+      where: { id: req.body.id },
     });
     if (stockPortfolio) {
       req.portfolio = stockPortfolio;
