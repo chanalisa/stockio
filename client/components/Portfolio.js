@@ -12,16 +12,33 @@ class Portfolio extends React.Component {
   }
 
   componentDidMount() {
-    this.props.authentication();
+    // this.props.authentication();
     this.props.getPortfolio(this.props.user);
+    console.log(this.props.portfolio);
+    // console.log(
+    //   this.props.portfolio.reduce((totalVal, stock) => {
+    //     totalVal + stock.quantity * stock.currentPrice;
+    //   })
+    // );
   }
 
   render() {
+    // console.log(
+    //   this.props.portfolio.reduce((totalVal, stock) => {
+    //     totalVal + stock.quantity * stock.currentPrice;
+    //   })
+    // );
     return (
       <div>
         <div className="row">
           <h1>Hi, {this.props.user.firstName}!</h1>
-          <h1 className="heading-primary">Portfolio (value)</h1>
+          <h1 className="heading-primary">
+            Portfolio (
+            {/* {this.props.portfolio.reduce((totalVal, stock) => {
+              totalVal + stock.quantity * stock.currentPrice;
+            })} */}
+            )
+          </h1>
           {this.props.portfolio.length ? (
             <ul className="stock-list">
               {this.props.portfolio.map((stock) => (

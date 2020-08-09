@@ -11,7 +11,7 @@ class Transactions extends React.Component {
   }
 
   componentDidMount() {
-    this.props.authentication();
+    // this.props.authentication();
     this.props.getTransactions(this.props.user);
   }
 

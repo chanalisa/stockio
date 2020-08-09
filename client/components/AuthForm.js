@@ -2,47 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { auth, logIn } from "../store";
+import { auth } from "../store";
 
-// const LogIn = (props) => {
-//   const { handleSubmit } = props;
-
-//   return (
-//     <div>
-//       <h1>Log In</h1>
-//       <form name="login" onSubmit={handleSubmit}>
-//         <label>
-//           Email
-//           <input type="email" name="email" />
-//         </label>
-//         <label>
-//           Password
-//           <input type="password" name="password" />
-//         </label>
-//         <button type="submit">Log In</button>
-//       </form>
-//       <Link to="/signup">Sign Up</Link>
-//     </div>
-//   );
-// };
-
-// // const mapStateToProps = state => {
-// //   return
-// // }
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     handleSubmit(event) {
-//       event.preventDefault();
-//       const email = event.target.email.value;
-//       const password = event.target.password.value;
-//       dispatch(logIn(email, password));
-//     },
-//   };
-// };
-
-// export default connect(null, mapDispatchToProps)(LogIn);
-// // export default LogIn;
 const AuthForm = (props) => {
   const { authFormName, formDisplayName, handleSubmit, error } = props;
 
