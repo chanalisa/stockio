@@ -10,11 +10,11 @@
       display: inline-block;
       padding: 0.5rem 1rem;
       align-self: center;
-      border-radius: 1rem;
-      -webkit-border-radius: 1rem;
-      -moz-border-radius: 1rem;
-      -ms-border-radius: 1rem;
-      -o-border-radius: 1rem;
+      border-radius: 4rem;
+      -webkit-border-radius: 4rem;
+      -moz-border-radius: 4rem;
+      -ms-border-radius: 4rem;
+      -o-border-radius: 4rem;
     }
 
     &-full {
@@ -24,18 +24,20 @@
       background-color: $color-primary;
       border: 1px solid $color-primary;
       color: $color-white;
-      padding: 0.5rem 1rem;
+      padding: 0.7rem 1rem;
       margin: 1rem auto;
-      border-radius: 1rem;
-      -webkit-border-radius: 1rem;
-      -moz-border-radius: 1rem;
-      -ms-border-radius: 1rem;
-      -o-border-radius: 1rem;
+      width: 85%;
+      border-radius: 4rem;
+      -webkit-border-radius: 4rem;
+      -moz-border-radius: 4rem;
+      -ms-border-radius: 4rem;
+      -o-border-radius: 4rem;
     }
 
     &-ghost {
       border: 1px solid $color-primary;
       color: $color-primary;
+      width: 50%;
     }
   }
 }
