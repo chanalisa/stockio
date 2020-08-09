@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import { logout, me } from "../store";
 
 class Navbar extends React.Component {
+  constructor(props) {
+    super(props);
+  }
   componentDidMount() {
     this.props.loadInitialData();
   }
@@ -13,28 +16,24 @@ class Navbar extends React.Component {
     return (
       <div>
         <nav>
-          {isLoggedIn ? (
-            <div>
-              {/* The navbar will show these links after you log in */}
-              <Link to="/portfolio" className="btn btn-ghost">
-                Portfolio
-              </Link>
-              <Link to="/transactions" className="btn btn-ghost">
-                Transactions
-              </Link>
-              <div className="button-wrapper">
-                <button onClick={this.props.logOut} className="btn btn-ghost">
-                  Log Out
-                </button>
-              </div>
-            </div>
-          ) : (
-            <div>
-              {/* The navbar will show these links before you log in */}
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Sign Up</Link>
-            </div>
-          )}
+          <div className="row">
+            {isLoggedIn && (
+              <ul>
+                {/* The navbar will show these links after you log in */}
+                <li>
+                  <Link to="/portfolio">Portfolio</Link>
+                </li>
+                <li>
+                  <Link to="/transactions">Transactions</Link>
+                </li>
+                <div className="button-wrapper">
+                  <button onClick={this.props.logOut} className="btn btn-full">
+                    Log Out
+                  </button>
+                </div>
+              </ul>
+            )}
+          </div>
         </nav>
       </div>
     );
@@ -54,7 +53,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     loadInitialData: () => dispatch(me()),
-    logOut: () => dispatch(logout),
+    logOut: () => dispatch(logout()),
   };
 };
 
