@@ -1,8 +1,11 @@
 const router = require("express").Router();
+const axios = require("axios");
 
 const User = require("../db/models").User;
 const Portfolio = require("../db/models").Portfolio;
 const Transaction = require("../db/models").Transaction;
+
+const REACT_APP_API_TOKEN = process.env.REACT_APP_API_TOKEN;
 
 // finds all instances of portfolio with given userId
 router.post("/", async (req, res, next) => {
@@ -17,10 +20,28 @@ router.post("/", async (req, res, next) => {
 });
 
 // buy stock: add to portfolio & create new record in transactions
-router.put("/", async (req, res, next) => {
+const getStockInfo = async (req, res, next) => {
+  const { data } = await axios.get(
+    `https://sandbox.iexapis.com/stable/stock/${req.body.ticker}/quote?token=${REACT_APP_API_TOKEN}`
+  );
+  if (data) {
+    req.stockInfo = data;
+    next();
+  } else {
+    res.sendStatus(404);
+  }
+};
+
+router.put("/", getStockInfo, async (req, res, next) => {
   try {
-    const newTransaction = await Transaction.create(req.body);
-    const stock = await Portfolio.findOne({
+    // console.log(req.stockInfo);
+    const newTransaction = await Transaction.create({
+      ticker: req.stockInfo.symbol,
+      companyName: req.stockInfo.companyName,
+      priceAtTransaction: +req.stockInfo.latestPrice * 100,
+      quantity: req.body.quantity,
+    });
+    const stock = await Portfolio.findOrCreate({
       where: {
         ticker: newTransaction.ticker,
       },
@@ -31,7 +52,12 @@ router.put("/", async (req, res, next) => {
       });
       res.json(stock);
     } else {
-      const newStock = await Portfolio.create(newTransaction);
+      const newStock = await Portfolio.create({
+        ticker: req.stockInfo.symbol,
+        companyName: req.stockInfo.companyName,
+        currentPrice: +req.stockInfo.latestPrice * 100,
+        quantity: req.body.quantity,
+      });
       res.json(newStock);
     }
   } catch (error) {

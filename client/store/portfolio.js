@@ -5,6 +5,7 @@ import axios from "axios";
  */
 
 const GOT_PORTFOLIO = "GOT_PORTFOLIO";
+const BOUGHT_STOCK = "BOUGHT_STOCK";
 
 /**
  * ACTION CREATORS
@@ -15,6 +16,11 @@ const gotPortfolio = (portfolio) => ({
   portfolio,
 });
 
+const boughtStock = (newStock) => ({
+  type: BOUGHT_STOCK,
+  newStock,
+});
+
 /**
  * THUNK CREATORS
  */
@@ -23,6 +29,19 @@ export const getPortfolio = (user) => async (dispatch) => {
   try {
     const { data } = await axios.post("/api/portfolio", user);
     dispatch(gotPortfolio(data));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const buyStock = () => async (dispatch) => {
+  try {
+    const { data } = await axios.put("/api/portfolio", {
+      ticker: "IBM",
+      quantity: 5,
+    });
+    console.log(data);
+    dispatch(boughtStock(data));
   } catch (error) {
     console.error(error);
   }
@@ -42,6 +61,8 @@ export default function (state = defaultPortfolio, action) {
   switch (action.type) {
     case GOT_PORTFOLIO:
       return action.portfolio;
+    case BOUGHT_STOCK:
+      return [...state, action.newStock];
     default:
       return state;
   }

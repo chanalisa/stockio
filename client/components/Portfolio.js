@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { logout, me } from "../store";
-import { getPortfolio } from "../store/portfolio";
+import portfolio, { buyStock, getPortfolio } from "../store/portfolio";
 import OrderForm from "./OrderForm";
 
 class Portfolio extends React.Component {
@@ -23,13 +23,14 @@ class Portfolio extends React.Component {
         {this.props.portfolio.length ? (
           <ul>
             {this.props.portfolio.map((stock) => (
-              <li>{stock.ticker}</li>
+              <li key={stock.id}>{stock.ticker}</li>
             ))}
           </ul>
         ) : (
           <div>Nothing to see here...</div>
         )}
         <Link to="/transactions">Transactions</Link>
+        <button onClick={this.props.buyStock}>Buy</button>
         <button onClick={this.props.logOut}>Log Out</button>
         <OrderForm />
       </div>
@@ -47,6 +48,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     authentication: () => dispatch(me()),
+    buyStock: () => dispatch(buyStock()),
     getPortfolio: (user) => dispatch(getPortfolio(user)),
     logOut: () => dispatch(logout()),
   };
