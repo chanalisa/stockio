@@ -47,37 +47,63 @@ const AuthForm = (props) => {
   const { authFormName, formDisplayName, handleSubmit, error } = props;
 
   return (
-    <div>
-      <h1>{formDisplayName}</h1>
-      <form className="auth-form" name={authFormName} onSubmit={handleSubmit}>
+    <div className="form">
+      <h1 className="heading-primary">{formDisplayName}</h1>
+      <form className="form-auth" name={authFormName} onSubmit={handleSubmit}>
         {authFormName === "signup" && (
-          <label>
-            First Name
-            <input type="firstName" name="firstName" required />
-          </label>
+          <div className="row">
+            <label>
+              First Name
+              <div className="row">
+                <input type="firstName" name="firstName" required />
+              </div>
+            </label>
+          </div>
         )}
         {authFormName === "signup" && (
-          <label>
-            Last Name
-            <input type="lastName" name="lastName" required />
-          </label>
+          <div className="row">
+            <label>
+              Last Name
+              <div className="row">
+                <input type="lastName" name="lastName" required />
+              </div>
+            </label>
+          </div>
         )}
-        <label>
-          Email
-          <input type="email" name="email" required />
-        </label>
-        <label>
-          Password
-          <input type="password" name="password" required />
-        </label>
-        <button type="submit">{formDisplayName}</button>
+        <div className="row">
+          <label>
+            Email
+            <div className="row">
+              <input type="email" name="email" required />
+            </div>
+          </label>
+        </div>
+        <div className="row">
+          <label>
+            Password
+            <div className="row">
+              <input type="password" name="password" required />
+            </div>
+          </label>
+        </div>
+        <div className="button-wrapper">
+          <button type="submit" className="btn btn-full">
+            {formDisplayName}
+          </button>
+        </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
-      {authFormName === "login" ? (
-        <Link to="/signup">Sign Up</Link>
-      ) : (
-        <Link to="/login">Log In</Link>
-      )}
+      <div className="button-wrapper">
+        {authFormName === "login" ? (
+          <Link to="/signup" className="btn btn-ghost">
+            Sign Up
+          </Link>
+        ) : (
+          <Link to="/login" className="btn btn-ghost">
+            Log In
+          </Link>
+        )}
+      </div>
     </div>
   );
 };

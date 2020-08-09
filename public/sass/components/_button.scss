@@ -1,0 +1,41 @@
+.button-wrapper {
+  text-align: center;
+
+  .btn {
+    &:link,
+    &:visited {
+      font-size: 100%;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      align-self: center;
+      border-radius: 1rem;
+      -webkit-border-radius: 1rem;
+      -moz-border-radius: 1rem;
+      -ms-border-radius: 1rem;
+      -o-border-radius: 1rem;
+    }
+
+    &-full {
+      font-family: "Quicksand", "Arial", sans-serif;
+      font-size: 100%;
+      text-transform: uppercase;
+      background-color: $color-primary;
+      border: 1px solid $color-primary;
+      color: $color-white;
+      padding: 0.5rem 1rem;
+      margin: 1rem auto;
+      border-radius: 1rem;
+      -webkit-border-radius: 1rem;
+      -moz-border-radius: 1rem;
+      -ms-border-radius: 1rem;
+      -o-border-radius: 1rem;
+    }
+
+    &-ghost {
+      border: 1px solid $color-primary;
+      color: $color-primary;
+    }
+  }
+}

@@ -31,7 +31,7 @@ export class OrderForm extends React.Component {
     return (
       <div>
         {/* <h1>{formDisplayName}</h1> */}
-        <form className="order-form" name="order" onSubmit={this.handleSubmit}>
+        <form className="form-order" name="order" onSubmit={this.handleSubmit}>
           <label>
             Ticker
             <input
