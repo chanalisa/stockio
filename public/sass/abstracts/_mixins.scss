@@ -1,0 +1,12 @@
+/* Clearfix appends a pseudo-element after the element which will then clear floats.
+    If an element's child elements are floated left/right, then the element's height will collapse.
+    Always specify the content property; otherwise, the pseudo-element will not appear.
+        (Specify the content as empty, so it's not visible.)
+    The clear property will clear both right and left floats. */
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}

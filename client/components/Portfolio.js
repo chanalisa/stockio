@@ -30,35 +30,38 @@ class Portfolio extends React.Component {
     // );
     return (
       <div>
-        <div className="row">
-          <h1>Hi, {this.props.user.firstName}!</h1>
-          <h1 className="heading-primary">
-            Portfolio (
-            {/* {this.props.portfolio.reduce((totalVal, stock) => {
+        <div className="section">
+          <h1 className="heading-component">
+            Hi, {this.props.user.firstName}!
+          </h1>
+          <div className="row">
+            <h1>
+              Portfolio (
+              {/* {this.props.portfolio.reduce((totalVal, stock) => {
               totalVal + stock.quantity * stock.currentPrice;
             })} */}
-            )
-          </h1>
-          {this.props.portfolio.length ? (
-            <ul className="stock-list">
-              {this.props.portfolio.map((stock) => (
-                <li key={stock.id}>
-                  {stock.ticker}: {stock.quantity}
-                  <div>
-                    {((stock.currentPrice * stock.quantity) / 100).toFixed(2)}
-                  </div>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <div>Nothing to see here...</div>
-          )}
-          <div className="button-wrapper">
-            <Link to="/transactions" className="btn btn-ghost">
-              Transactions
-            </Link>
+              )
+            </h1>
+            <div className="col-1-of-2">
+              {this.props.portfolio.length ? (
+                <ul className="stock-list">
+                  {this.props.portfolio.map((stock) => (
+                    <li key={stock.id}>
+                      {stock.ticker}: {stock.quantity}
+                      <div>
+                        {((stock.currentPrice * stock.quantity) / 100).toFixed(
+                          2
+                        )}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <div>Nothing to see here...</div>
+              )}
+            </div>
+            <OrderForm buyStock={this.props.buyStock} user={this.props.user} />
           </div>
-          <OrderForm buyStock={this.props.buyStock} user={this.props.user} />
         </div>
       </div>
     );

@@ -1,3 +1,8 @@
+/* Clearfix appends a pseudo-element after the element which will then clear floats.
+    If an element's child elements are floated left/right, then the element's height will collapse.
+    Always specify the content property; otherwise, the pseudo-element will not appear.
+        (Specify the content as empty, so it's not visible.)
+    The clear property will clear both right and left floats. */
 * {
   margin: 0;
   padding: 0;
@@ -21,6 +26,9 @@ body {
   text-align: center; }
   .heading-primary .logo {
     font-size: 150%; }
+
+.heading-component {
+  color: #212121; }
 
 .button-wrapper {
   text-align: center; }
@@ -57,7 +65,7 @@ body {
     width: 60%; }
 
 .form {
-  width: 60%;
+  width: 45%;
   margin: 0 auto; }
   .form .form-auth {
     width: 60%;
@@ -96,6 +104,31 @@ nav .button-wrapper {
   display: inline-block;
   margin-left: 40px; }
 
+.section {
+  max-width: 114rem;
+  margin: 0 auto;
+  padding: 0 4rem; }
+
 .row {
   max-width: 114rem;
-  margin: 0 auto; }
+  margin: 0 auto;
+  padding: 0 4rem;
+  /* This selects everything except for the last child. */
+  /* This includes the clearfix mixin created, which will restore the row to the intended height. */
+  /* This will select all elements where the class attributes begin with "col-". 
+        *= indicates includes
+        $= indicates ends with */
+  /* The calc function allows for operations with mixed units.
+        If using a variable within calc, the variable must be wrapped in hash followed my curly brackets. */ }
+  .row:not(:last-child) {
+    margin-bottom: 8rem; }
+  .row::after {
+    content: "";
+    display: block;
+    clear: both; }
+  .row [class^="col-"] {
+    float: left; }
+    .row [class^="col-"]:not(:last-child) {
+      margin-right: 6rem; }
+  .row .col-1-of-2 {
+    width: calc((100% - 7rem) / 2); }

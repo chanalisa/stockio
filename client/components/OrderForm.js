@@ -29,8 +29,10 @@ export class OrderForm extends React.Component {
 
   render() {
     return (
-      <div className="form">
-        <h1 className="heading-primary">Cash:</h1>
+      <div className="col-1-or-2 form">
+        <h1 className="heading-component">
+          Cash: ${(this.props.user.cash / 100).toFixed(2)}
+        </h1>
         <form className="form-order" name="order" onSubmit={this.handleSubmit}>
           <label>
             Ticker

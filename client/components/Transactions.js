@@ -17,17 +17,19 @@ class Transactions extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Transactions</h1>
-        {this.props.transactions.length ? (
-          <ul className="stock-list">
-            {this.props.transactions.map((transaction) => (
-              <li>{transaction.ticker}</li>
-            ))}
-          </ul>
-        ) : (
-          <div>No Transactions</div>
-        )}
+      <div className="section">
+        <div className="row">
+          <h1>Transactions</h1>
+          {this.props.transactions.length ? (
+            <ul className="stock-list">
+              {this.props.transactions.map((transaction) => (
+                <li>{transaction.ticker}</li>
+              ))}
+            </ul>
+          ) : (
+            <div>No Transactions</div>
+          )}
+        </div>
       </div>
     );
   }

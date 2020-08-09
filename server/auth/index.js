@@ -33,6 +33,7 @@ router.post("/login", async (req, res, next) => {
       // if the user successfully logs in provide a JWT
     } else {
       const token = jwt.sign({ user }, APP_SECRET);
+      console.log(token);
       res
         .status(200)
         .json({ user, token, message: "user successfully logged in" });
@@ -46,6 +47,7 @@ router.post("/signup", async (req, res, next) => {
   try {
     const user = await User.create(req.body);
     const token = jwt.sign({ user }, APP_SECRET);
+    console.group(token);
     res.status(200).json({ user, token, message: "user successfully created" });
   } catch (error) {
     // if someone attempts to create an account with an email already in the db
