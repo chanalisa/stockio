@@ -29,8 +29,8 @@ export class OrderForm extends React.Component {
 
   render() {
     return (
-      <div>
-        {/* <h1>{formDisplayName}</h1> */}
+      <div className="form">
+        <h1 className="heading-primary">Cash:</h1>
         <form className="form-order" name="order" onSubmit={this.handleSubmit}>
           <label>
             Ticker
@@ -52,7 +52,11 @@ export class OrderForm extends React.Component {
               required
             />
           </label>
-          <button type="submit">Buy</button>
+          <div className="button-wrapper">
+            <button type="submit" className="btn btn-full">
+              Buy
+            </button>
+          </div>
         </form>
       </div>
     );

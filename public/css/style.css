@@ -43,7 +43,7 @@ body {
     color: #ffffff;
     padding: 0.7rem 1rem;
     margin: 1rem auto;
-    width: 85%;
+    width: 100%;
     border-radius: 4rem;
     -webkit-border-radius: 4rem;
     -moz-border-radius: 4rem;
@@ -52,7 +52,7 @@ body {
   .button-wrapper .btn-ghost {
     border: 1px solid #2196f3;
     color: #2196f3;
-    width: 50%; }
+    width: 60%; }
 
 .form {
   width: 60%;

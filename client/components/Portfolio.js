@@ -20,6 +20,7 @@ class Portfolio extends React.Component {
     return (
       <div>
         <h1>Hi, {this.props.user.firstName}!</h1>
+        <h1 className="heading-primary">Portfolio (value)</h1>
         {this.props.portfolio.length ? (
           <ul>
             {this.props.portfolio.map((stock) => (
@@ -29,7 +30,11 @@ class Portfolio extends React.Component {
         ) : (
           <div>Nothing to see here...</div>
         )}
-        <Link to="/transactions">Transactions</Link>
+        <div className="button-wrapper">
+          <Link to="/transactions" className="btn btn-ghost">
+            Transactions
+          </Link>
+        </div>
         <button onClick={this.props.logOut}>Log Out</button>
         <OrderForm buyStock={this.props.buyStock} user={this.props.user} />
       </div>
