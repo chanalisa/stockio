@@ -1,57 +1,60 @@
 import React from "react";
-import { connect } from "react-redux";
 
-import { auth } from "../store";
+export class OrderForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      ticker: "",
+      quantity: "",
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-const OrderForm = (props) => {
-  return (
-    <div>
-      {/* <h1>{formDisplayName}</h1> */}
-      <form className="order-form" name="order">
-        <label>
-          Ticker
-          <input type="text" name="ticker" required />
-        </label>
-        <label>
-          Quantity
-          <input type="number" name="quantity" required />
-        </label>
-        <button type="submit">Buy</button>
-      </form>
-    </div>
-  );
-};
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     authFormName: "signup",
-//     formDisplayName: "Sign Up",
-//     error: state.user.error,
-//   };
-// };
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log(this.state);
+    this.props.buyStock(this.state, this.props.user);
+    this.setState({
+      ticker: "",
+      quantity: "",
+    });
+  }
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     handleSubmit(event) {
-//       event.preventDefault;
-//       const authFormName = event.target.name;
-//       const email = event.target.email.value;
-//       const password = event.target.password.value;
-//       authFormName === "signup"
-//         ? dispatch(
-//             auth(
-//               email,
-//               password,
-//               authFormName,
-//               event.target.firstName.value,
-//               event.target.lastName.value
-//             )
-//           )
-//         : dispatch(auth(email, password, authFormName));
-//     },
-//   };
-// };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(OrderForm);
-
-export default OrderForm;
+  render() {
+    return (
+      <div>
+        {/* <h1>{formDisplayName}</h1> */}
+        <form className="order-form" name="order" onSubmit={this.handleSubmit}>
+          <label>
+            Ticker
+            <input
+              type="text"
+              name="ticker"
+              value={this.state.ticker}
+              onChange={this.handleChange}
+              required
+            />
+          </label>
+          <label>
+            Quantity
+            <input
+              type="text"
+              name="quantity"
+              value={this.state.quantity}
+              onChange={this.handleChange}
+              required
+            />
+          </label>
+          <button type="submit">Buy</button>
+        </form>
+      </div>
+    );
+  }
+}

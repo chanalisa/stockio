@@ -34,15 +34,10 @@ export const getPortfolio = (user) => async (dispatch) => {
   }
 };
 
-export const buyStock = (user) => async (dispatch) => {
+export const buyStock = (order, user) => async (dispatch) => {
   try {
-    console.log(user);
-    const { data } = await axios.put("/api/portfolio", {
-      ticker: "IBM",
-      quantity: 5,
-      user,
-    });
-    console.log(data);
+    console.log({ ...order, user });
+    const { data } = await axios.put("/api/portfolio", { ...order, user });
     dispatch(boughtStock(data));
   } catch (error) {
     console.error(error);

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import { logout, me } from "../store";
 import { buyStock, getPortfolio } from "../store/portfolio";
-import OrderForm from "./OrderForm";
+import { OrderForm } from "./OrderForm";
 
 class Portfolio extends React.Component {
   constructor(props) {
@@ -30,9 +30,8 @@ class Portfolio extends React.Component {
           <div>Nothing to see here...</div>
         )}
         <Link to="/transactions">Transactions</Link>
-        <button onClick={this.props.buyStock}>Buy</button>
         <button onClick={this.props.logOut}>Log Out</button>
-        <OrderForm />
+        <OrderForm buyStock={this.props.buyStock} user={this.props.user} />
       </div>
     );
   }
@@ -48,7 +47,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     authentication: () => dispatch(me()),
-    buyStock: (user) => dispatch(buyStock(user)),
+    buyStock: (order, user) => dispatch(buyStock(order, user)),
     getPortfolio: (user) => dispatch(getPortfolio(user)),
     logOut: () => dispatch(logout()),
   };
