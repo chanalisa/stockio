@@ -35,10 +35,10 @@ router.post("/", async (req, res, next) => {
     if (stockPortfolio.length) {
       for (let stock of stockPortfolio) {
         const { data } = await axios.get(
-          BASE_URL + stock.ticker + "/quote?token=" + REACT_APP_API_TOKEN
+          BASE_URL + stock.ticker + "/price?token=" + REACT_APP_API_TOKEN
         );
         await stock.update({
-          currentPrice: +data.latestPrice * 100,
+          currentPrice: Math.round(data * 100),
         });
       }
     }
@@ -55,7 +55,7 @@ router.put("/", getStockInfo, async (req, res, next) => {
     const newTransaction = await Transaction.create({
       ticker: req.stockInfo.symbol,
       companyName: req.stockInfo.companyName,
-      priceAtTransaction: +req.stockInfo.latestPrice * 100,
+      priceAtTransaction: Math.round(+req.stockInfo.latestPrice * 100),
       quantity: +req.body.quantity,
       userId: req.body.user.id,
     });
@@ -68,9 +68,11 @@ router.put("/", getStockInfo, async (req, res, next) => {
     });
     if (stock) {
       // if found, update the quantity
+      console.log(Math.round(req.stockInfo.latestPrice * 100));
       stock.update({
         quantity: stock.quantity + newTransaction.quantity,
-        currentPrice: +req.stockInfo.latestPrice * 100,
+        currentPrice: Math.round(+req.stockInfo.latestPrice * 100),
+        openPrice: Math.round(+req.stockInfo.open * 100),
       });
       res.json(stock);
     } else {
@@ -78,8 +80,9 @@ router.put("/", getStockInfo, async (req, res, next) => {
       const newStock = await Portfolio.create({
         ticker: req.stockInfo.symbol,
         companyName: req.stockInfo.companyName,
-        currentPrice: +req.stockInfo.latestPrice * 100,
+        currentPrice: Math.round(+req.stockInfo.latestPrice * 100),
         quantity: +req.body.quantity,
+        openPrice: Math.round(+req.stockInfo.open * 100),
         userId: req.body.user.id,
       });
       res.json(newStock);

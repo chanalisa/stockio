@@ -25,6 +25,13 @@ const Portfolio = db.define("portfolio", {
       min: 0,
     },
   },
+  openPrice: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    validate: {
+      min: 0,
+    },
+  },
   quantity: {
     type: Sequelize.INTEGER,
     allowNull: false,
