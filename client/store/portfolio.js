@@ -34,11 +34,13 @@ export const getPortfolio = (user) => async (dispatch) => {
   }
 };
 
-export const buyStock = () => async (dispatch) => {
+export const buyStock = (user) => async (dispatch) => {
   try {
+    console.log(user);
     const { data } = await axios.put("/api/portfolio", {
       ticker: "IBM",
       quantity: 5,
+      user,
     });
     console.log(data);
     dispatch(boughtStock(data));

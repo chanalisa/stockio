@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { logout, me } from "../store";
-import portfolio, { buyStock, getPortfolio } from "../store/portfolio";
+import { buyStock, getPortfolio } from "../store/portfolio";
 import OrderForm from "./OrderForm";
 
 class Portfolio extends React.Component {
@@ -48,7 +48,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     authentication: () => dispatch(me()),
-    buyStock: () => dispatch(buyStock()),
+    buyStock: (user) => dispatch(buyStock(user)),
     getPortfolio: (user) => dispatch(getPortfolio(user)),
     logOut: () => dispatch(logout()),
   };

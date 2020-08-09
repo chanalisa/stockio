@@ -40,15 +40,18 @@ router.put("/", getStockInfo, async (req, res, next) => {
       companyName: req.stockInfo.companyName,
       priceAtTransaction: +req.stockInfo.latestPrice * 100,
       quantity: req.body.quantity,
+      userId: req.body.user.id,
     });
-    const stock = await Portfolio.findOrCreate({
+    const stock = await Portfolio.findOne({
       where: {
         ticker: newTransaction.ticker,
+        userId: req.body.user.id,
       },
     });
     if (stock) {
       stock.update({
         quantity: stock.quantity + newTransaction.quantity,
+        currentPrice: +req.stockInfo.latestPrice * 100,
       });
       res.json(stock);
     } else {
@@ -57,6 +60,7 @@ router.put("/", getStockInfo, async (req, res, next) => {
         companyName: req.stockInfo.companyName,
         currentPrice: +req.stockInfo.latestPrice * 100,
         quantity: req.body.quantity,
+        userId: req.body.user.id,
       });
       res.json(newStock);
     }
