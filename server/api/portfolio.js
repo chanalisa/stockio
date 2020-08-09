@@ -8,23 +8,8 @@ const Transaction = require("../db/models").Transaction;
 const BASE_URL = process.env.BASE_URL;
 const REACT_APP_API_TOKEN = process.env.REACT_APP_API_TOKEN;
 
-// finds all instances of portfolio with given userId
-router.post("/", async (req, res, next) => {
-  try {
-    const stockPortfolio = await Portfolio.findAll({
-      where: { userId: req.body.id },
-    });
-    res.json(stockPortfolio);
-  } catch (error) {
-    console.error(error);
-  }
-});
-
 // middleware to collect current data for requested stock
 const getStockInfo = async (req, res, next) => {
-  console.log(
-    BASE_URL + req.body.ticker + "/quote?token=" + REACT_APP_API_TOKEN
-  );
   try {
     const { data } = await axios.get(
       BASE_URL + req.body.ticker + "/quote?token=" + REACT_APP_API_TOKEN
@@ -39,6 +24,29 @@ const getStockInfo = async (req, res, next) => {
     console.error(error);
   }
 };
+
+// find all instances of portfolio with given userId
+router.post("/", async (req, res, next) => {
+  try {
+    const stockPortfolio = await Portfolio.findAll({
+      where: { userId: req.body.id },
+    });
+    // update portfolio with latest price
+    if (stockPortfolio.length) {
+      for (let stock of stockPortfolio) {
+        const { data } = await axios.get(
+          BASE_URL + stock.ticker + "/quote?token=" + REACT_APP_API_TOKEN
+        );
+        await stock.update({
+          currentPrice: +data.latestPrice * 100,
+        });
+      }
+    }
+    res.json(stockPortfolio);
+  } catch (error) {
+    console.error(error);
+  }
+});
 
 // buy stock
 router.put("/", getStockInfo, async (req, res, next) => {

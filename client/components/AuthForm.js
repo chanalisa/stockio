@@ -47,62 +47,64 @@ const AuthForm = (props) => {
   const { authFormName, formDisplayName, handleSubmit, error } = props;
 
   return (
-    <div className="form">
-      <h1 className="heading-primary">{formDisplayName}</h1>
-      <form className="form-auth" name={authFormName} onSubmit={handleSubmit}>
-        {authFormName === "signup" && (
+    <div className="row">
+      <div className="form">
+        <h1 className="heading-primary">{formDisplayName}</h1>
+        <form className="form-auth" name={authFormName} onSubmit={handleSubmit}>
+          {authFormName === "signup" && (
+            <div className="row">
+              <label>
+                First Name
+                <div className="row">
+                  <input type="firstName" name="firstName" required />
+                </div>
+              </label>
+            </div>
+          )}
+          {authFormName === "signup" && (
+            <div className="row">
+              <label>
+                Last Name
+                <div className="row">
+                  <input type="lastName" name="lastName" required />
+                </div>
+              </label>
+            </div>
+          )}
           <div className="row">
             <label>
-              First Name
+              Email
               <div className="row">
-                <input type="firstName" name="firstName" required />
+                <input type="email" name="email" required />
               </div>
             </label>
           </div>
-        )}
-        {authFormName === "signup" && (
           <div className="row">
             <label>
-              Last Name
+              Password
               <div className="row">
-                <input type="lastName" name="lastName" required />
+                <input type="password" name="password" required />
               </div>
             </label>
           </div>
-        )}
-        <div className="row">
-          <label>
-            Email
-            <div className="row">
-              <input type="email" name="email" required />
-            </div>
-          </label>
-        </div>
-        <div className="row">
-          <label>
-            Password
-            <div className="row">
-              <input type="password" name="password" required />
-            </div>
-          </label>
-        </div>
+          <div className="button-wrapper">
+            <button type="submit" className="btn btn-full">
+              {formDisplayName}
+            </button>
+          </div>
+          {error && error.response && <div> {error.response.data} </div>}
+        </form>
         <div className="button-wrapper">
-          <button type="submit" className="btn btn-full">
-            {formDisplayName}
-          </button>
+          {authFormName === "login" ? (
+            <Link to="/signup" className="btn btn-ghost">
+              Sign Up
+            </Link>
+          ) : (
+            <Link to="/login" className="btn btn-ghost">
+              Log In
+            </Link>
+          )}
         </div>
-        {error && error.response && <div> {error.response.data} </div>}
-      </form>
-      <div className="button-wrapper">
-        {authFormName === "login" ? (
-          <Link to="/signup" className="btn btn-ghost">
-            Sign Up
-          </Link>
-        ) : (
-          <Link to="/login" className="btn btn-ghost">
-            Log In
-          </Link>
-        )}
       </div>
     </div>
   );

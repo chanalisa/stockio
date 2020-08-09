@@ -1,22 +1,28 @@
 nav {
-  float: right;
-  list-style: none;
+  .logo {
+    float: left;
+    margin: 20px;
+  }
+  .main-nav {
+    float: right;
+    list-style: none;
 
-  li {
-    display: inline-block;
-    margin-left: 40px;
-    text-transform: uppercase;
+    li {
+      display: inline-block;
+      margin-left: 40px;
+      text-transform: uppercase;
 
-    a:link,
-    a:visited {
-      padding: 8px 0;
-      color: $color-primary;
-      text-decoration: none;
-    }
+      a:link,
+      a:visited {
+        padding: 8px 0;
+        color: $color-primary;
+        text-decoration: none;
+      }
 
-    a:hover,
-    a:active {
-      border-bottom: 2px solid $color-primary-accent;
+      a:hover,
+      a:active {
+        border-bottom: 2px solid $color-primary-accent;
+      }
     }
   }
 

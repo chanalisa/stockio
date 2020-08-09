@@ -17,8 +17,9 @@ class Navbar extends React.Component {
       <div>
         <nav>
           <div className="row">
+            <h1 className="heading-primary logo">stockio</h1>
             {isLoggedIn && (
-              <ul>
+              <ul className="main-nav">
                 {/* The navbar will show these links after you log in */}
                 <li>
                   <Link to="/portfolio">Portfolio</Link>

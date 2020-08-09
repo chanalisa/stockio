@@ -20,7 +20,7 @@ class Transactions extends React.Component {
       <div>
         <h1>Transactions</h1>
         {this.props.transactions.length ? (
-          <ul>
+          <ul className="stock-list">
             {this.props.transactions.map((transaction) => (
               <li>{transaction.ticker}</li>
             ))}
@@ -28,8 +28,6 @@ class Transactions extends React.Component {
         ) : (
           <div>No Transactions</div>
         )}
-        <Link to="/portfolio">Portfolio</Link>
-        <button onClick={this.props.logOut}>Log Out</button>
       </div>
     );
   }

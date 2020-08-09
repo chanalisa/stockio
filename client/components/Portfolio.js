@@ -19,24 +19,30 @@ class Portfolio extends React.Component {
   render() {
     return (
       <div>
-        <h1>Hi, {this.props.user.firstName}!</h1>
-        <h1 className="heading-primary">Portfolio (value)</h1>
-        {this.props.portfolio.length ? (
-          <ul>
-            {this.props.portfolio.map((stock) => (
-              <li key={stock.id}>{stock.ticker}</li>
-            ))}
-          </ul>
-        ) : (
-          <div>Nothing to see here...</div>
-        )}
-        <div className="button-wrapper">
-          <Link to="/transactions" className="btn btn-ghost">
-            Transactions
-          </Link>
+        <div className="row">
+          <h1>Hi, {this.props.user.firstName}!</h1>
+          <h1 className="heading-primary">Portfolio (value)</h1>
+          {this.props.portfolio.length ? (
+            <ul className="stock-list">
+              {this.props.portfolio.map((stock) => (
+                <li key={stock.id}>
+                  {stock.ticker}: {stock.quantity}
+                  <div>
+                    {((stock.currentPrice * stock.quantity) / 100).toFixed(2)}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <div>Nothing to see here...</div>
+          )}
+          <div className="button-wrapper">
+            <Link to="/transactions" className="btn btn-ghost">
+              Transactions
+            </Link>
+          </div>
+          <OrderForm buyStock={this.props.buyStock} user={this.props.user} />
         </div>
-        <button onClick={this.props.logOut}>Log Out</button>
-        <OrderForm buyStock={this.props.buyStock} user={this.props.user} />
       </div>
     );
   }
