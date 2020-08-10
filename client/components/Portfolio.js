@@ -8,23 +8,11 @@ import OrderForm from "./OrderForm";
 class Portfolio extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      portfolioValue: 0,
-    };
   }
 
   async componentDidMount() {
-    // this.props.authentication();
     await this.props.getPortfolio(this.props.user);
-    let portfolioValue = await (
-      this.props.portfolio.reduce(
-        (total, stock) => total + stock.currentPrice
-      ) / 100
-    ).toFixed(2);
-    await this.setState({
-      portfolioValue: portfolioValue,
-    });
-    await console.log(this.state.portfolioValue);
+
     await this.props.portfolio.map((stock) => {
       if (stock.currentPrice < stock.openPrice) {
         document.getElementById(stock.id).classList.add("decrease");
@@ -37,23 +25,11 @@ class Portfolio extends React.Component {
   }
 
   render() {
-    console.log(
-      this.props.portfolio
-      // .reduce((totalVal, stock) => {
-      //   totalVal + stock.quantity * stock.currentPrice;
-      // })
-    );
     return (
       <div>
         <div className="section">
-          <h1 className="heading-component">
-            Hi, {this.props.user.firstName}!
-          </h1>
           <div className="row">
-            <h1 className="heading-component">
-              Portfolio{" "}
-              {this.props.portfolio.length ? this.state.portfolioValue : ` `}
-            </h1>
+            <h1 className="heading-component">Portfolio</h1>
             <div className="col-1-of-2">
               {this.props.portfolio.length ? (
                 <ul className="stock-list">
@@ -85,7 +61,6 @@ class Portfolio extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     user: state.user,
     portfolio: state.portfolio,

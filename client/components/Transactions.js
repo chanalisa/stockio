@@ -1,8 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 
-import { logout, me } from "../store";
 import { getTransactions } from "../store/transactions";
 
 class Transactions extends React.Component {
@@ -11,7 +9,6 @@ class Transactions extends React.Component {
   }
 
   componentDidMount() {
-    // this.props.authentication();
     this.props.getTransactions(this.props.user);
   }
 
@@ -46,9 +43,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    authentication: () => dispatch(me()),
     getTransactions: (user) => dispatch(getTransactions(user)),
-    logOut: () => dispatch(logout()),
   };
 };
 

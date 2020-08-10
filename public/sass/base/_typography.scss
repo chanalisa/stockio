@@ -17,4 +17,9 @@ body {
 .heading-component {
   color: $color-black;
   margin-bottom: 1rem;
+
+  &.greeting {
+    margin-left: 2rem;
+    color: $color-primary-accent;
+  }
 }

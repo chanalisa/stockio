@@ -30,6 +30,9 @@ body {
 .heading-component {
   color: #212121;
   margin-bottom: 1rem; }
+  .heading-component.greeting {
+    margin-left: 2rem;
+    color: #448aff; }
 
 .button-wrapper {
   text-align: center; }

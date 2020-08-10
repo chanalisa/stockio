@@ -54,15 +54,6 @@ router.put("/", getStockInfo, async (req, res, next) => {
   const userCashBalance = Math.round(
     req.body.user.cash - req.stockInfo.latestPrice * 100 * req.body.quantity
   );
-  console.log("user: ", req.body.user.cash);
-  console.log("latest: ", req.stockInfo.latestPrice);
-  console.log("quant: ", req.body.quantity);
-  console.log(
-    "result: ",
-    Math.round(
-      req.body.user.cash - req.stockInfo.latestPrice * 100 * req.body.quantity
-    )
-  );
   if (userCashBalance < 0) {
     res.sendStatus(403).json({ error: "Insufficient Funds" });
   } else {

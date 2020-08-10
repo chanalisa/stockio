@@ -33,7 +33,6 @@ router.post("/login", async (req, res, next) => {
       // if the user successfully logs in provide a JWT
     } else {
       const token = jwt.sign({ user }, APP_SECRET);
-      console.log("login route:", token);
       res
         .status(200)
         .json({ user, token, message: "user successfully logged in" });
@@ -73,7 +72,6 @@ router.get("/me", verifyToken, async (req, res) => {
   });
   try {
     const user = await User.findByPk(verifiedUser.user.id);
-
     res.json(user);
   } catch (error) {
     console.error(error);

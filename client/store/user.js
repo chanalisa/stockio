@@ -64,7 +64,6 @@ export const me = () => async (dispatch) => {
       },
     });
     if (res.data) {
-      console.log(res.data);
       dispatch(gotUser(res.data));
       // user is redirected to portfolio page upon successful login
       history.location.pathname === "/login" && history.push("/portfolio");
