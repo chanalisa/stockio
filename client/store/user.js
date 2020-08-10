@@ -42,15 +42,13 @@ export const auth = (
           password,
         })
       : await axios.post(`/auth/${method}`, { email, password });
-    console.log(res.data);
   } catch (authError) {
     dispatch(gotUser({ error: authError }));
   }
   try {
     dispatch(gotUser(res.data.user));
-    console.log(res.data.token);
     history.push("/portfolio");
-    window.localStorage.setItem("token", res.data.token);
+    localStorage.setItem("token", res.data.token);
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr);
   }
@@ -60,7 +58,6 @@ export const auth = (
 export const me = () => async (dispatch) => {
   try {
     const token = localStorage.getItem("token");
-    console.log(token);
     const res = await axios.get("/auth/me", {
       headers: {
         Authorization: `Bearer ${token}`,

@@ -20,9 +20,9 @@ class OrderForm extends React.Component {
     });
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault();
-    this.props.buyStock(this.state, this.props.user);
+    await this.props.buyStock(this.state, this.props.user);
     this.setState({
       ticker: "",
       quantity: "",

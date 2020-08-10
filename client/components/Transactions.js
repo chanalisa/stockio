@@ -19,15 +19,17 @@ class Transactions extends React.Component {
     return (
       <div className="section">
         <div className="row">
-          <h1>Transactions</h1>
-          {this.props.transactions.length ? (
+          <h1 className="heading-component">Transactions</h1>
+          {this.props.transactions.length && (
             <ul className="stock-list">
               {this.props.transactions.map((transaction) => (
-                <li>{transaction.ticker}</li>
+                <li key={transaction.id}>
+                  {transaction.transactionType} ({transaction.ticker}):{" "}
+                  {transaction.quantity} shares @{" "}
+                  {(transaction.priceAtTransaction / 100).toFixed(2)}
+                </li>
               ))}
             </ul>
-          ) : (
-            <div>No Transactions</div>
           )}
         </div>
       </div>

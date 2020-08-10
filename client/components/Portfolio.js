@@ -10,23 +10,18 @@ class Portfolio extends React.Component {
     super(props);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     // this.props.authentication();
-    this.props.getPortfolio(this.props.user);
-    console.log(this.props.portfolio);
-    // console.log(
-    //   this.props.portfolio.reduce((totalVal, stock) => {
-    //     totalVal + stock.quantity * stock.currentPrice;
-    //   })
-    // );
+    await this.props.getPortfolio(this.props.user);
   }
 
   render() {
-    // console.log(
-    //   this.props.portfolio.reduce((totalVal, stock) => {
-    //     totalVal + stock.quantity * stock.currentPrice;
-    //   })
-    // );
+    console.log(
+      this.props.portfolio
+      // .reduce((totalVal, stock) => {
+      //   totalVal + stock.quantity * stock.currentPrice;
+      // })
+    );
     return (
       <div>
         <div className="section">
@@ -34,11 +29,12 @@ class Portfolio extends React.Component {
             Hi, {this.props.user.firstName}!
           </h1>
           <div className="row">
-            <h1>
+            <h1 className="heading-component">
               Portfolio (
-              {/* {this.props.portfolio.reduce((totalVal, stock) => {
-              totalVal + stock.quantity * stock.currentPrice;
-            })} */}
+              {/* {this.props.portfolio.length &&
+                this.props.portfolio.forEach((stock) => {
+                  totalVal + stock.quantity * stock.currentPrice;
+                })} */}
               )
             </h1>
             <div className="col-1-of-2">
@@ -56,7 +52,9 @@ class Portfolio extends React.Component {
                   ))}
                 </ul>
               ) : (
-                <div>Nothing to see here...</div>
+                <div className="col-1-of-2">
+                  <br />
+                </div>
               )}
             </div>
             <OrderForm />

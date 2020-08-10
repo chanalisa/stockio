@@ -73,9 +73,12 @@ export default function (state = defaultPortfolio, action) {
     case GOT_PORTFOLIO:
       return action.portfolio;
     case BOUGHT_STOCK:
-      return [...state, action.newStock];
-    // case UPDATED_USER_CASH:
-    //   return { ...state, user: action.user };
+      return state.map((stock) => {
+        if (stock.ticker === action.newStock.ticker) {
+          return { ...stock, quantity: action.newStock.quantity };
+        }
+        return stock;
+      });
     default:
       return state;
   }

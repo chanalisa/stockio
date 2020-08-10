@@ -7,12 +7,14 @@ class Navbar extends React.Component {
   constructor(props) {
     super(props);
   }
-  componentDidMount() {
-    this.props.loadInitialData();
+
+  async componentDidMount() {
+    await this.props.loadInitialData();
   }
 
   render() {
     const { isLoggedIn } = this.props;
+    console.log(this.props);
     return (
       <div>
         <nav>
