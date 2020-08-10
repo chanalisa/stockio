@@ -10,9 +10,9 @@ class Portfolio extends React.Component {
     super(props);
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     // this.props.authentication();
-    await this.props.getPortfolio(this.props.user);
+    this.props.getPortfolio(this.props.user);
   }
 
   render() {
@@ -66,8 +66,9 @@ class Portfolio extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return {
-    user: state.user.user,
+    user: state.user,
     portfolio: state.portfolio,
   };
 };

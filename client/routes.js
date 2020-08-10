@@ -33,7 +33,7 @@ const mapState = (state) => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user.user that has a truthy id.
     // Otherwise, state.user.user will be an empty object, and state.user.user.id will be falsey
-    isLoggedIn: state.user.user ? !!state.user.user.id : false,
+    isLoggedIn: state.user ? !!state.user.id : false,
   };
 };
 

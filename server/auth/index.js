@@ -62,15 +62,23 @@ router.post("/logout", (req, res, next) => {
   res.redirect("/login");
 });
 
-router.get("/me", verifyToken, (req, res) => {
-  console.log(req.token);
+router.get("/me", verifyToken, async (req, res) => {
+  let verifiedUser;
   jwt.verify(req.token, APP_SECRET, (error, authData) => {
     if (error) {
       res.sendStatus(403);
     } else {
-      res.json(authData);
+      verifiedUser = authData;
     }
   });
+  try {
+    console.log("------------------------------", verifiedUser);
+    const user = await User.findByPk(verifiedUser.user.id);
+    console.log("------------------------------", user.cash);
+    res.json(user);
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 module.exports = router;

@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import { buyStock } from "../store/portfolio";
+import { me } from "../store";
 class OrderForm extends React.Component {
   constructor(props) {
     super(props);
@@ -13,6 +14,10 @@ class OrderForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    // this.props.getUser();
+  }
+
   handleChange(event) {
     console.log(this.props);
     this.setState({
@@ -20,9 +25,9 @@ class OrderForm extends React.Component {
     });
   }
 
-  async handleSubmit(event) {
+  handleSubmit(event) {
     event.preventDefault();
-    await this.props.buyStock(this.state, this.props.user);
+    this.props.buyStock(this.state, this.props.user);
     this.setState({
       ticker: "",
       quantity: "",
@@ -69,13 +74,14 @@ class OrderForm extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user.user,
+    user: state.user,
     portfolio: state.portfolio,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    getUser: () => dispatch(me()),
     buyStock: (order, user) => dispatch(buyStock(order, user)),
   };
 };

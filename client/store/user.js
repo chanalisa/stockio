@@ -64,6 +64,7 @@ export const me = () => async (dispatch) => {
       },
     });
     if (res.data) {
+      console.log(res.data);
       dispatch(gotUser(res.data));
       // user is redirected to portfolio page upon successful login
       history.location.pathname === "/login" && history.push("/portfolio");
@@ -100,7 +101,11 @@ const defaultUser = {};
 export default function (state = defaultUser, action) {
   switch (action.type) {
     case GOT_USER:
-      return action.user;
+      if (!state.id) {
+        return action.user;
+      } else {
+        return { ...state, cash: action.user.cash };
+      }
     case REMOVED_USER:
       return defaultUser;
     default:

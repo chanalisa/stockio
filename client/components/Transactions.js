@@ -39,7 +39,7 @@ class Transactions extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user.user,
+    user: state.user,
     transactions: state.transactions,
   };
 };

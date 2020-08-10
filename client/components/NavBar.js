@@ -8,8 +8,8 @@ class Navbar extends React.Component {
     super(props);
   }
 
-  async componentDidMount() {
-    await this.props.loadInitialData();
+  componentDidMount() {
+    this.props.loadInitialData();
   }
 
   render() {
@@ -49,7 +49,7 @@ class Navbar extends React.Component {
 
 const mapState = (state) => {
   return {
-    isLoggedIn: state.user.user ? !!state.user.user.id : false,
+    isLoggedIn: state.user ? !!state.user.id : false,
   };
 };
 
