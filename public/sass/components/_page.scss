@@ -2,4 +2,7 @@
   max-width: $grid-width;
   margin: 0 auto;
   padding: 0 4rem;
+  .row {
+    padding: 0 4rem;
+  }
 }

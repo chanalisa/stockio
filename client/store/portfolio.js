@@ -1,4 +1,5 @@
 import axios from "axios";
+// import store from "./index";
 
 /**
  * ACTION TYPES
@@ -6,6 +7,7 @@ import axios from "axios";
 
 const GOT_PORTFOLIO = "GOT_PORTFOLIO";
 const BOUGHT_STOCK = "BOUGHT_STOCK";
+// const UPDATED_USER_CASH = "UPDATED_USER_CASH";
 
 /**
  * ACTION CREATORS
@@ -20,6 +22,11 @@ const boughtStock = (newStock) => ({
   type: BOUGHT_STOCK,
   newStock,
 });
+
+// const updatedUserCash = (user) => ({
+//   type: UPDATED_USER_CASH,
+//   user,
+// });
 
 /**
  * THUNK CREATORS
@@ -36,9 +43,11 @@ export const getPortfolio = (user) => async (dispatch) => {
 
 export const buyStock = (order, user) => async (dispatch) => {
   try {
-    console.log({ ...order, user });
+    // console.log({ ...order, user });
     const { data } = await axios.put("/api/portfolio", { ...order, user });
+    // console.log(data);
     dispatch(boughtStock(data));
+    // dispatch(updatedUserCash(data.user));
   } catch (error) {
     console.error(error);
   }
@@ -47,6 +56,11 @@ export const buyStock = (order, user) => async (dispatch) => {
 /**
  * INITIAL STATE
  */
+
+// const defaultState = {
+//   portfolio: [],
+//   user: {},
+// };
 
 const defaultPortfolio = [];
 
@@ -60,6 +74,8 @@ export default function (state = defaultPortfolio, action) {
       return action.portfolio;
     case BOUGHT_STOCK:
       return [...state, action.newStock];
+    // case UPDATED_USER_CASH:
+    //   return { ...state, user: action.user };
     default:
       return state;
   }

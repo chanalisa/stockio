@@ -15,8 +15,8 @@ const PORT = 8080;
 app.use(morgan("dev"));
 
 // bodyparsing middleware
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // API routes
 app.use("/auth", require("./auth"));

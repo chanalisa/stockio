@@ -67,6 +67,9 @@ body {
 .form {
   width: 45%;
   margin: 0 auto; }
+  .form.row {
+    padding: 0 0;
+    margin-bottom: 0; }
   .form .form-auth {
     width: 60%;
     margin: 0 auto; }
@@ -108,11 +111,12 @@ nav .button-wrapper {
   max-width: 114rem;
   margin: 0 auto;
   padding: 0 4rem; }
+  .section .row {
+    padding: 0 4rem; }
 
 .row {
   max-width: 114rem;
   margin: 0 auto;
-  padding: 0 4rem;
   /* This selects everything except for the last child. */
   /* This includes the clearfix mixin created, which will restore the row to the intended height. */
   /* This will select all elements where the class attributes begin with "col-". 
@@ -120,8 +124,6 @@ nav .button-wrapper {
         $= indicates ends with */
   /* The calc function allows for operations with mixed units.
         If using a variable within calc, the variable must be wrapped in hash followed my curly brackets. */ }
-  .row:not(:last-child) {
-    margin-bottom: 8rem; }
   .row::after {
     content: "";
     display: block;

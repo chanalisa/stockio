@@ -5,18 +5,12 @@ import history from "../history";
  * ACTION TYPES
  */
 
-const LOGGED_IN = "LOGGED_IN";
 const GOT_USER = "GOT_USER";
 const REMOVED_USER = "REMOVED_USER";
 
 /**
  * ACTION CREATORS
  */
-
-const loggedIn = (user) => ({
-  type: LOGGED_IN,
-  user,
-});
 
 const gotUser = (user) => ({
   type: GOT_USER,
@@ -50,12 +44,13 @@ export const auth = (
       : await axios.post(`/auth/${method}`, { email, password });
     console.log(res.data);
   } catch (authError) {
-    return dispatch(gotUser(authError));
+    dispatch(gotUser({ error: authError }));
   }
   try {
-    dispatch(gotUser(res.data));
-    localStorage.setItem("token", res.data.token);
+    dispatch(gotUser(res.data.user));
+    console.log(res.data.token);
     history.push("/portfolio");
+    window.localStorage.setItem("token", res.data.token);
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr);
   }
@@ -65,6 +60,7 @@ export const auth = (
 export const me = () => async (dispatch) => {
   try {
     const token = localStorage.getItem("token");
+    console.log(token);
     const res = await axios.get("/auth/me", {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -94,37 +90,6 @@ export const logout = () => async (dispatch) => {
   }
 };
 
-// export const logIn = (email, password) => async (dispatch) => {
-//   let res;
-//   try {
-//     res = await axios.post("/auth/login", { email, password });
-//   } catch (authError) {
-//     return dispatch(loggedIn(authError));
-//   }
-//   try {
-//     dispatch(loggedIn(res.data));
-//     localStorage.setItem("token", res.data.token);
-//     // history.push("/portfolio");
-//   } catch (dispatchOrHistoryErr) {
-//     console.error(dispatchOrHistoryErr);
-//   }
-// };
-
-// export const signUp = (user) => async (dispatch) => {
-//   let res;
-//   try {
-//     res = await axios.post("/auth/signup", user);
-//   } catch (authError) {
-//     return dispatch(loggedIn(authError));
-//   }
-//   try {
-//     dispatch(loggedIn(res.data));
-//     // history.push('/home')
-//   } catch (dispatchOrHistoryErr) {
-//     console.error(dispatchOrHistoryErr);
-//   }
-// };
-
 /**
  * INITIAL STATE
  */
@@ -137,8 +102,6 @@ const defaultUser = {};
 
 export default function (state = defaultUser, action) {
   switch (action.type) {
-    case LOGGED_IN:
-      return action.user;
     case GOT_USER:
       return action.user;
     case REMOVED_USER:

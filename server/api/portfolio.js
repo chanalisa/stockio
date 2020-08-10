@@ -50,45 +50,54 @@ router.post("/", async (req, res, next) => {
 
 // buy stock
 router.put("/", getStockInfo, async (req, res, next) => {
-  try {
-    // create a new entry in the transactions table
-    const newTransaction = await Transaction.create({
-      ticker: req.stockInfo.symbol,
-      companyName: req.stockInfo.companyName,
-      priceAtTransaction: Math.round(+req.stockInfo.latestPrice * 100),
-      quantity: +req.body.quantity,
-      userId: req.body.user.id,
-    });
-    // looks for an entry in the portfolios table
-    const stock = await Portfolio.findOne({
-      where: {
-        ticker: newTransaction.ticker,
-        userId: req.body.user.id,
-      },
-    });
-    if (stock) {
-      // if found, update the quantity
-      console.log(Math.round(req.stockInfo.latestPrice * 100));
-      stock.update({
-        quantity: stock.quantity + newTransaction.quantity,
-        currentPrice: Math.round(+req.stockInfo.latestPrice * 100),
-        openPrice: Math.round(+req.stockInfo.open * 100),
+  // funds check
+  const userCashBalance = Math.round(
+    req.body.user.cash - req.stockInfo.latestPrice * 100 * req.body.quantity
+  );
+  if (userCashBalance < 0) {
+    res.sendStatus(403).json({ error: "Insufficient Funds" });
+  } else {
+    try {
+      // update user funds
+      const user = await User.findByPk(req.body.user.id);
+      user.update({
+        cash: userCashBalance,
       });
-      res.json(stock);
-    } else {
-      // if not, create a new entry in the portfolio table
-      const newStock = await Portfolio.create({
+      // create a new entry in the transactions table
+      const newTransaction = await Transaction.create({
         ticker: req.stockInfo.symbol,
         companyName: req.stockInfo.companyName,
-        currentPrice: Math.round(+req.stockInfo.latestPrice * 100),
-        quantity: +req.body.quantity,
-        openPrice: Math.round(+req.stockInfo.open * 100),
+        priceAtTransaction: Math.round(req.stockInfo.latestPrice * 100),
+        quantity: req.body.quantity,
         userId: req.body.user.id,
       });
-      res.json(newStock);
+      // looks for an entry in the portfolios table or create one if not found
+      const [stock, created] = await Portfolio.findOrCreate({
+        where: {
+          ticker: newTransaction.ticker,
+          userId: req.body.user.id,
+        },
+        defaults: {
+          ticker: req.stockInfo.symbol,
+          companyName: req.stockInfo.companyName,
+          currentPrice: Math.round(req.stockInfo.latestPrice * 100),
+          quantity: +req.body.quantity,
+          openPrice: Math.round(req.stockInfo.open * 100),
+          userId: req.body.user.id,
+        },
+      });
+      // if found, update the quantity
+      if (!created) {
+        stock.update({
+          quantity: stock.quantity + newTransaction.quantity,
+          currentPrice: Math.round(req.stockInfo.latestPrice * 100),
+          openPrice: Math.round(req.stockInfo.open * 100),
+        });
+        res.json(stock);
+      }
+    } catch (error) {
+      console.error(error);
     }
-  } catch (error) {
-    console.error(error);
   }
 });
 

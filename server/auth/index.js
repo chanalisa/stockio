@@ -33,7 +33,7 @@ router.post("/login", async (req, res, next) => {
       // if the user successfully logs in provide a JWT
     } else {
       const token = jwt.sign({ user }, APP_SECRET);
-      console.log(token);
+      console.log("login route:", token);
       res
         .status(200)
         .json({ user, token, message: "user successfully logged in" });
@@ -47,7 +47,6 @@ router.post("/signup", async (req, res, next) => {
   try {
     const user = await User.create(req.body);
     const token = jwt.sign({ user }, APP_SECRET);
-    console.group(token);
     res.status(200).json({ user, token, message: "user successfully created" });
   } catch (error) {
     // if someone attempts to create an account with an email already in the db
@@ -64,12 +63,13 @@ router.post("/logout", (req, res, next) => {
 });
 
 router.get("/me", verifyToken, (req, res) => {
+  console.log(req.token);
   jwt.verify(req.token, APP_SECRET, (error, authData) => {
-    // if (error) {
-    //   res.sendStatus(403);
-    // } else {
-    res.json(authData);
-    // }
+    if (error) {
+      res.sendStatus(403);
+    } else {
+      res.json(authData);
+    }
   });
 });
 

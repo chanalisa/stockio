@@ -90,7 +90,7 @@ const mapStateToPropsSignUp = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     handleSubmit(event) {
-      event.preventDefault;
+      event.preventDefault();
       localStorage.clear();
       const authFormName = event.target.name;
       const email = event.target.email.value;

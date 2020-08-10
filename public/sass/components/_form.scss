@@ -2,6 +2,11 @@
   width: 45%;
   margin: 0 auto;
 
+  &.row {
+    padding: 0 0;
+    margin-bottom: 0;
+  }
+
   .form-auth {
     width: 60%;
     margin: 0 auto;

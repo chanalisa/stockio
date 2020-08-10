@@ -1,12 +1,11 @@
 .row {
   max-width: $grid-width;
   margin: 0 auto;
-  padding: 0 4rem;
 
   /* This selects everything except for the last child. */
-  &:not(:last-child) {
-    margin-bottom: $gutter-vertical;
-  }
+  // &:not(:last-child) {
+  //   margin-bottom: $gutter-vertical;
+  // }
 
   /* This includes the clearfix mixin created, which will restore the row to the intended height. */
   @include clearfix;

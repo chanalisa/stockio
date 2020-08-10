@@ -1,10 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 
 import { logout, me } from "../store";
-import { buyStock, getPortfolio } from "../store/portfolio";
-import { OrderForm } from "./OrderForm";
+import { getPortfolio } from "../store/portfolio";
+import OrderForm from "./OrderForm";
 
 class Portfolio extends React.Component {
   constructor(props) {
@@ -60,7 +59,7 @@ class Portfolio extends React.Component {
                 <div>Nothing to see here...</div>
               )}
             </div>
-            <OrderForm buyStock={this.props.buyStock} user={this.props.user} />
+            <OrderForm />
           </div>
         </div>
       </div>
@@ -78,7 +77,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     authentication: () => dispatch(me()),
-    buyStock: (order, user) => dispatch(buyStock(order, user)),
     getPortfolio: (user) => dispatch(getPortfolio(user)),
     logOut: () => dispatch(logout()),
   };

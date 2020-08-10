@@ -7,10 +7,12 @@ import { me } from "./store";
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData();
+    window.localStorage.setItem("test", "test");
   }
 
   render() {
     const { isLoggedIn } = this.props;
+    console.log(this.props);
 
     return (
       <Switch>
@@ -30,6 +32,7 @@ class Routes extends Component {
 }
 
 const mapState = (state) => {
+  console.log(state);
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user.user that has a truthy id.
     // Otherwise, state.user.user will be an empty object, and state.user.user.id will be falsey

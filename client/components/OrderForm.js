@@ -1,6 +1,8 @@
 import React from "react";
+import { connect } from "react-redux";
 
-export class OrderForm extends React.Component {
+import { buyStock } from "../store/portfolio";
+class OrderForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,6 +14,7 @@ export class OrderForm extends React.Component {
   }
 
   handleChange(event) {
+    console.log(this.props);
     this.setState({
       [event.target.name]: event.target.value,
     });
@@ -19,7 +22,6 @@ export class OrderForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state);
     this.props.buyStock(this.state, this.props.user);
     this.setState({
       ticker: "",
@@ -64,3 +66,18 @@ export class OrderForm extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.user.user,
+    portfolio: state.portfolio,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    buyStock: (order, user) => dispatch(buyStock(order, user)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(OrderForm);
