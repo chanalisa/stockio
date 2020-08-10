@@ -1,4 +1,4 @@
-# stockio: mock stock app
+# stockio: a mock stock app
 
 http://stockio.alisa.codes/
 
