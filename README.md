@@ -2,7 +2,7 @@
 
 http://stockio.alisa.codes/
 
-User Stories:
+<b>User Stories:</b>
 1. Users can create a new account with first name, last name, email, and password.
 - Each user's cash account balance has a default value of $5000.00 USD.
 - A user can only register once with any given email.
