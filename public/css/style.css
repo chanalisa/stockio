@@ -85,8 +85,18 @@ body {
   list-style: none; }
   .stock-list li {
     margin-bottom: 1rem;
-    border-bottom: 1px;
     text-transform: uppercase; }
+    .stock-list li .col-1-of-2 {
+      margin-bottom: 2rem; }
+
+.decrease {
+  color: #f44336; }
+
+.increase {
+  color: #4caf50; }
+
+.no-change {
+  color: #bdbdbd; }
 
 nav .logo {
   float: left;

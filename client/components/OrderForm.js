@@ -15,7 +15,7 @@ class OrderForm extends React.Component {
   }
 
   componentDidMount() {
-    // this.props.getUser();
+    this.props.getUser();
   }
 
   handleChange(event) {

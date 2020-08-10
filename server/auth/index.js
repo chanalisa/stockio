@@ -72,9 +72,8 @@ router.get("/me", verifyToken, async (req, res) => {
     }
   });
   try {
-    console.log("------------------------------", verifiedUser);
     const user = await User.findByPk(verifiedUser.user.id);
-    console.log("------------------------------", user.cash);
+
     res.json(user);
   } catch (error) {
     console.error(error);
