@@ -82,7 +82,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getUser: () => dispatch(me()),
-    buyStock: (order, user) => dispatch(buyStock(order, user)),
+    buyStock: (order, user) => {
+      dispatch(buyStock(order, user));
+      dispatch(me());
+    },
   };
 };
 
