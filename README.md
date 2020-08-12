@@ -1,8 +1,22 @@
 # stockio: a mock stock app
-
 http://stockio.alisa.codes/
 
-<b>User Stories:</b>
+A mock stock Node.js web app built without any boilerplate code!
+### Frontend:
+- Webpack (module bundler)
+- Sass (preprocessor)
+- React
+- Redux
+- React Router
+- Axios
+### Backend:
+- Express
+- PostgreSQL
+### Amazon Cloud Services:
+- Relational Database Service (RDS)
+- Elastic Compute Cloud (EC2)
+
+### User Stories:
 1. Users can create a new account with first name, last name, email, and password.
 - Each user's cash account balance has a default value of $5000.00 USD.
 - A user can only register once with any given email.
