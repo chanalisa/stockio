@@ -48,12 +48,14 @@ const AuthForm = (props) => {
               </div>
             </label>
           </div>
+          {error && error.response && (
+            <div className="error"> {error.response.data} </div>
+          )}
           <div className="button-wrapper">
             <button type="submit" className="btn btn-full">
               {formDisplayName}
             </button>
           </div>
-          {error && error.response && <div> {error.response.data} </div>}
         </form>
         <div className="button-wrapper">
           {authFormName === "login" ? (

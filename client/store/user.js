@@ -103,7 +103,7 @@ export default function (state = defaultUser, action) {
       if (!state.id) {
         return action.user;
       } else {
-        console.log({ ...state, cash: action.user.cash });
+        console.log(action.user.cash);
         return { ...state, cash: action.user.cash };
       }
     case REMOVED_USER:
