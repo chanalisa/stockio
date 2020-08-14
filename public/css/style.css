@@ -106,7 +106,8 @@ body {
 nav .logo {
   float: left;
   margin-bottom: 1.5rem;
-  font-size: 2.5rem; }
+  font-size: 2.5rem;
+  cursor: default; }
 
 nav .main-nav {
   float: right;

@@ -84,6 +84,7 @@ export default function (state = defaultPortfolio, action) {
           return stock;
         });
       } else {
+        console.log([...state, action.newStock]);
         return [...state, action.newStock];
       }
     default:

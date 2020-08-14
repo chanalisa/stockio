@@ -95,7 +95,7 @@ const mapDispatchToProps = (dispatch) => {
       event.preventDefault();
       localStorage.clear();
       const authFormName = event.target.name;
-      const email = event.target.email.value;
+      const email = event.target.email.value.toLowerCase();
       const password = event.target.password.value;
       authFormName === "signup"
         ? dispatch(
