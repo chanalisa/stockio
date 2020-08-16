@@ -19,7 +19,6 @@ class OrderForm extends React.Component {
   }
 
   handleChange(event) {
-    console.log(this.props);
     this.setState({
       [event.target.name]: event.target.value,
     });
@@ -28,6 +27,7 @@ class OrderForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     this.props.buyStock(this.state, this.props.user);
+    this.props.getUser();
     this.setState({
       ticker: "",
       quantity: "",
@@ -41,6 +41,9 @@ class OrderForm extends React.Component {
           Cash: ${(this.props.user.cash / 100).toFixed(2)}
         </h1>
         <form className="form-order" name="order" onSubmit={this.handleSubmit}>
+          {error && error.response && (
+            <div className="error"> {error.response.data} </div>
+          )}
           <label>
             Ticker
             <input
@@ -74,8 +77,9 @@ class OrderForm extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
+    error: state.user.error,
     portfolio: state.portfolio,
+    user: state.user,
   };
 };
 
@@ -84,7 +88,6 @@ const mapDispatchToProps = (dispatch) => {
     getUser: () => dispatch(me()),
     buyStock: (order, user) => {
       dispatch(buyStock(order, user));
-      dispatch(me());
     },
   };
 };
