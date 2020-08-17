@@ -1,7 +1,7 @@
 # stockio: a mock stock app
 http://stockio.alisa.codes/
 
-A mock stock Node.js web app built without any boilerplate code!
+A mock stock Node.js web app built without boilerplate code!
 ### Frontend:
 - Webpack (module bundler)
 - Sass (preprocessor)
