@@ -35,7 +35,6 @@ class OrderForm extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div className="col-1-or-2 form">
         <h1 className="heading-component">
@@ -47,11 +46,10 @@ class OrderForm extends React.Component {
             this.props.portfolio[this.props.portfolio.length - 1].error
               .response && (
               <div className="error">
-                {" "}
                 {
                   this.props.portfolio[this.props.portfolio.length - 1].error
                     .response.data
-                }{" "}
+                }
               </div>
             )}
           <label>

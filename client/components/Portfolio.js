@@ -19,7 +19,16 @@ class Portfolio extends React.Component {
       <div>
         <div className="section">
           <div className="row">
-            <h1 className="heading-component">Portfolio</h1>
+            <h1 className="heading-component">
+              Portfolio
+              {this.props.portfolio.length
+                ? `: $${(
+                    this.props.portfolio.reduce((total, stock) => {
+                      return total + stock.currentPrice * stock.quantity;
+                    }, 0) / 100
+                  ).toFixed(2)}`
+                : ""}
+            </h1>
             <div className="col-1-of-2">
               {this.props.portfolio.length ? (
                 <ul className="stock-list">
@@ -28,7 +37,6 @@ class Portfolio extends React.Component {
                       return (
                         <li
                           key={stock.id}
-                          id={stock.id}
                           className={
                             stock.currentPrice < stock.openPrice
                               ? "decrease"
