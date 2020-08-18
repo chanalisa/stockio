@@ -33,18 +33,23 @@ class Portfolio extends React.Component {
             <div className="col-1-of-2">
               {this.props.portfolio.length ? (
                 <ul className="stock-list">
-                  {this.props.portfolio.map((stock) => (
-                    <li key={stock.id} id={stock.id}>
-                      <div className="col-1-of-2">
-                        {stock.ticker}: {stock.quantity} Shares
-                      </div>
-                      <div className="col-1-of-2">
-                        {((stock.currentPrice * stock.quantity) / 100).toFixed(
-                          2
-                        )}
-                      </div>
-                    </li>
-                  ))}
+                  {this.props.portfolio.map((stock) => {
+                    if (stock.id) {
+                      return (
+                        <li key={stock.id} id={stock.id}>
+                          <div className="col-1-of-2">
+                            {stock.ticker}: {stock.quantity} Shares
+                          </div>
+                          <div className="col-1-of-2">
+                            {(
+                              (stock.currentPrice * stock.quantity) /
+                              100
+                            ).toFixed(2)}
+                          </div>
+                        </li>
+                      );
+                    }
+                  })}
                 </ul>
               ) : (
                 <div className="col-1-of-2">
