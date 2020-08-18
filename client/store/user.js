@@ -22,7 +22,7 @@ const removedUser = () => ({
 });
 
 /**
- * THUNK CREATORS
+ * THUNK
  */
 
 export const auth = (

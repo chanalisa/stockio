@@ -17,7 +17,7 @@ class Transactions extends React.Component {
       <div className="section">
         <div className="row">
           <h1 className="heading-component">Transactions</h1>
-          {this.props.transactions.length && (
+          {this.props.transactions.length ? (
             <ul className="stock-list">
               {this.props.transactions.map((transaction) => (
                 <li key={transaction.id}>
@@ -27,6 +27,8 @@ class Transactions extends React.Component {
                 </li>
               ))}
             </ul>
+          ) : (
+            ""
           )}
         </div>
       </div>

@@ -22,7 +22,7 @@ const boughtStock = (newStock) => ({
 });
 
 /**
- * THUNK CREATORS
+ * THUNK
  */
 
 export const getPortfolio = (user) => async (dispatch) => {
