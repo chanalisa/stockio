@@ -12,16 +12,6 @@ class Portfolio extends React.Component {
 
   async componentDidMount() {
     await this.props.getPortfolio(this.props.user);
-
-    await this.props.portfolio.map((stock) => {
-      if (stock.currentPrice < stock.openPrice) {
-        document.getElementById(stock.id).classList.add("decrease");
-      } else if (stock.currentPrice > stock.openPrice) {
-        document.getElementById(stock.id).classList.add("increase");
-      } else {
-        document.getElementById(stock.id).classList.add("no-change");
-      }
-    });
   }
 
   render() {
@@ -36,7 +26,17 @@ class Portfolio extends React.Component {
                   {this.props.portfolio.map((stock) => {
                     if (stock.id) {
                       return (
-                        <li key={stock.id} id={stock.id}>
+                        <li
+                          key={stock.id}
+                          id={stock.id}
+                          className={
+                            stock.currentPrice < stock.openPrice
+                              ? "decrease"
+                              : stock.currentPrice > stock.openPrice
+                              ? "increase"
+                              : "no-change"
+                          }
+                        >
                           <div className="col-1-of-2">
                             {stock.ticker}: {stock.quantity} Shares
                           </div>
