@@ -50,14 +50,14 @@ router.post("/", async (req, res, next) => {
 
 // buy stock
 router.put("/", getStockInfo, async (req, res, next) => {
-  // funds check
-  const userCashBalance =
-    req.body.user.cash -
-    Math.round(req.stockInfo.latestPrice * 100) * req.body.quantity;
-  if (userCashBalance < 0) {
-    res.sendStatus(403).json({ error: "Insufficient Funds" });
-  } else {
-    try {
+  try {
+    // funds check
+    const userCashBalance =
+      req.body.user.cash -
+      Math.round(req.stockInfo.latestPrice * 100) * req.body.quantity;
+    if (userCashBalance < 0) {
+      res.status(401).send("Insufficient Funds");
+    } else {
       // update user funds
       const user = await User.findByPk(req.body.user.id);
       user.update({
@@ -95,9 +95,9 @@ router.put("/", getStockInfo, async (req, res, next) => {
         });
         res.json(stock);
       }
-    } catch (error) {
-      console.error(error);
     }
+  } catch (error) {
+    console.error(error);
   }
 });
 

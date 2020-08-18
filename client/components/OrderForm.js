@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { buyStock } from "../store/portfolio";
+import portfolio, { buyStock } from "../store/portfolio";
 import { me } from "../store";
 class OrderForm extends React.Component {
   constructor(props) {
@@ -35,15 +35,25 @@ class OrderForm extends React.Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div className="col-1-or-2 form">
         <h1 className="heading-component">
           Cash: ${(this.props.user.cash / 100).toFixed(2)}
         </h1>
         <form className="form-order" name="order" onSubmit={this.handleSubmit}>
-          {error && error.response && (
-            <div className="error"> {error.response.data} </div>
-          )}
+          {this.props.portfolio.length &&
+            this.props.portfolio[this.props.portfolio.length - 1].error &&
+            this.props.portfolio[this.props.portfolio.length - 1].error
+              .response && (
+              <div className="error">
+                {" "}
+                {
+                  this.props.portfolio[this.props.portfolio.length - 1].error
+                    .response.data
+                }{" "}
+              </div>
+            )}
           <label>
             Ticker
             <input
@@ -77,7 +87,6 @@ class OrderForm extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    error: state.user.error,
     portfolio: state.portfolio,
     user: state.user,
   };

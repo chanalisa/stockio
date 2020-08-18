@@ -77,8 +77,8 @@ body {
   .form .form-auth {
     width: 60%;
     margin: 0 auto; }
-    .form .form-auth .error {
-      color: #f44336; }
+  .form .error {
+    color: #f44336; }
   .form input {
     width: 100%;
     padding: 0.5rem;
