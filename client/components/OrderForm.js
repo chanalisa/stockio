@@ -41,17 +41,18 @@ class OrderForm extends React.Component {
           Cash: ${(this.props.user.cash / 100).toFixed(2)}
         </h1>
         <form className="form-order" name="order" onSubmit={this.handleSubmit}>
-          {this.props.portfolio.length &&
-            this.props.portfolio[this.props.portfolio.length - 1].error &&
-            this.props.portfolio[this.props.portfolio.length - 1].error
-              .response && (
-              <div className="error">
-                {
-                  this.props.portfolio[this.props.portfolio.length - 1].error
-                    .response.data
-                }
-              </div>
-            )}
+          {this.props.portfolio.length
+            ? this.props.portfolio[this.props.portfolio.length - 1].error &&
+              this.props.portfolio[this.props.portfolio.length - 1].error
+                .response && (
+                <div className="error">
+                  {
+                    this.props.portfolio[this.props.portfolio.length - 1].error
+                      .response.data
+                  }
+                </div>
+              )
+            : ""}
           <label>
             Ticker
             <input
