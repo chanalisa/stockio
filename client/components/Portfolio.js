@@ -23,9 +23,11 @@ class Portfolio extends React.Component {
               Portfolio
               {this.props.portfolio.length
                 ? `: $${(
-                    this.props.portfolio.reduce((total, stock) => {
-                      return total + stock.currentPrice * stock.quantity;
-                    }, 0) / 100
+                    this.props.portfolio
+                      .filter((stock) => stock.id)
+                      .reduce((total, stock) => {
+                        return total + stock.currentPrice * stock.quantity;
+                      }, 0) / 100
                   ).toFixed(2)}`
                 : ""}
             </h1>
