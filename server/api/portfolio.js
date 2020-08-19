@@ -14,13 +14,10 @@ const getStockInfo = async (req, res, next) => {
     const { data } = await axios.get(
       BASE_URL + req.body.ticker + "/quote?token=" + REACT_APP_API_TOKEN
     );
-    if (data) {
-      req.stockInfo = data;
-      next();
-    } else {
-      res.sendStatus(404);
-    }
+    req.stockInfo = data;
+    next();
   } catch (error) {
+    res.status(404).send("Invalid Ticker");
     console.error(error);
   }
 };
@@ -97,6 +94,9 @@ router.put("/", getStockInfo, async (req, res, next) => {
       }
     }
   } catch (error) {
+    if (error.name === "SequelizeDatabaseError") {
+      res.status(401).send("Invalid Quantity");
+    }
     console.error(error);
   }
 });
