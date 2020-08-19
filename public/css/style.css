@@ -41,7 +41,6 @@ body {
     text-transform: uppercase;
     text-decoration: none;
     display: inline-block;
-    cursor: pointer;
     padding: 0.5rem 1rem;
     align-self: center;
     border-radius: 4rem;
@@ -55,6 +54,7 @@ body {
     text-transform: uppercase;
     background-color: #2196f3;
     border: 1px solid #2196f3;
+    cursor: pointer;
     color: #ffffff;
     padding: 0.7rem 1rem;
     margin: 1rem auto;
