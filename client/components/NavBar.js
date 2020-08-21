@@ -9,6 +9,7 @@ class Navbar extends React.Component {
   }
 
   componentDidMount() {
+    localStorage.clear();
     this.props.loadInitialData();
   }
 
