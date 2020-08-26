@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import portfolio, { buyStock } from "../store/portfolio";
+import { buyStock } from "../store/portfolio";
 import { me } from "../store";
 class OrderForm extends React.Component {
   constructor(props) {
