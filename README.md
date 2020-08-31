@@ -12,7 +12,7 @@ A mock stock Node.js web app built without boilerplate code!
 ### Backend:
 - Express
 - PostgreSQL
-### Amazon Web Services:
+### Amazon Web Services (AWS):
 - Relational Database Service (RDS)
 - Elastic Compute Cloud (EC2)
 
