@@ -8,13 +8,13 @@ class Routes extends Component {
   constructor(props) {
     super(props);
   }
+
   componentDidMount() {
     this.props.loadInitialData();
   }
 
   render() {
     const { isLoggedIn } = this.props;
-
     return (
       <Switch>
         <Route exact path="/" component={LogIn} />

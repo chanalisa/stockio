@@ -25,5 +25,9 @@
 
   .col-1-of-2 {
     width: calc((100% - #{$gutter-horizontal + 1rem}) / 2);
+
+    &.right {
+      text-align: right;
+    }
   }
 }

@@ -63,15 +63,10 @@ export const me = () => async (dispatch) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    if (res.data) {
-      dispatch(gotUser(res.data));
-      // user is redirected to portfolio page upon successful login
-      history.location.pathname === "/login" && history.push("/portfolio");
-    } else {
-      dispatch(gotUser(defaultUser));
-      history.push("/login");
-    }
+    dispatch(gotUser(res.data));
   } catch (err) {
+    dispatch(gotUser(defaultUser));
+    history.push("/login");
     console.error(err);
   }
 };

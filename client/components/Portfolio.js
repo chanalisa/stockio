@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import history from "../history";
 import { getPortfolio } from "../store/portfolio";
 import OrderForm from "./OrderForm";
 
@@ -58,7 +57,7 @@ class Portfolio extends React.Component {
                           <div className="col-1-of-2">
                             {stock.ticker}: {stock.quantity} Shares
                           </div>
-                          <div className="col-1-of-2">
+                          <div className="col-1-of-2 right">
                             {(
                               (stock.currentPrice * stock.quantity) /
                               100

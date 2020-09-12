@@ -7,6 +7,8 @@ import { auth } from "../store";
 const AuthForm = (props) => {
   const { authFormName, formDisplayName, handleSubmit, error } = props;
 
+  localStorage.clear();
+
   return (
     <div className="row">
       <div className="form">

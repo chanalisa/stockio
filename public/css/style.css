@@ -181,3 +181,5 @@ nav .button-wrapper {
       margin-right: 6rem; }
   .row .col-1-of-2 {
     width: calc((100% - 7rem) / 2); }
+    .row .col-1-of-2.right {
+      text-align: right; }

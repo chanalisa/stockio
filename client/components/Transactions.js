@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import history from "../history";
 import { getTransactions } from "../store/transactions";
 
 class Transactions extends React.Component {
@@ -14,7 +13,6 @@ class Transactions extends React.Component {
   }
 
   render() {
-    console.log(history);
     return (
       <div className="section">
         <div className="row">
