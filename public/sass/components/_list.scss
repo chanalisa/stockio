@@ -1,5 +1,7 @@
 .stock-list {
+  max-height: 75vh;
   list-style: none;
+  overflow: scroll;
 
   li {
     margin-bottom: 1rem;
