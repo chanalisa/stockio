@@ -35,16 +35,17 @@ export const getPortfolio = (user) => async (dispatch) => {
 };
 
 export const buyStock = (order, user) => async (dispatch) => {
-  let res;
   try {
-    res = await axios.put("/api/portfolio", { ...order, user });
-  } catch (fundsError) {
-    dispatch(boughtStock({ error: fundsError }));
-  }
-  try {
+    let res = await axios.put("/api/portfolio", { ...order, user });
     dispatch(boughtStock(res.data));
   } catch (error) {
-    console.error(error);
+    if (
+      error.response.data === "Invalid Ticker" ||
+      error.response.data === "Invalid Quantity" ||
+      error.response.data === "Insufficient Funds"
+    ) {
+      dispatch(boughtStock({ error }));
+    }
   }
 };
 
