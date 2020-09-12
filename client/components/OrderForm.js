@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import { buyStock } from "../store/portfolio";
-import { me } from "../store";
+
 class OrderForm extends React.Component {
   constructor(props) {
     super(props);
@@ -12,10 +12,6 @@ class OrderForm extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  componentDidMount() {
-    this.props.getUser();
   }
 
   handleChange(event) {
@@ -84,7 +80,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getUser: () => dispatch(me()),
     buyStock: (order, user) => {
       dispatch(buyStock(order, user));
     },

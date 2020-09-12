@@ -55,7 +55,8 @@ export const auth = (
 };
 
 // confirms the authenticated user on state
-export const me = () => async (dispatch) => {
+export const me = (source) => async (dispatch) => {
+  console.log(source);
   try {
     const token = localStorage.getItem("token");
     const res = await axios.get("/auth/me", {

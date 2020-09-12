@@ -9,7 +9,7 @@ class Navbar extends React.Component {
   }
 
   componentDidMount() {
-    this.props.loadInitialData();
+    this.props.loadInitialData("nav");
   }
 
   render() {
@@ -43,10 +43,6 @@ class Navbar extends React.Component {
   }
 }
 
-/**
- * CONTAINER
- */
-
 const mapState = (state) => {
   return {
     isLoggedIn: state.user ? !!state.user.id : false,
@@ -55,7 +51,7 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    loadInitialData: () => dispatch(me()),
+    loadInitialData: (source) => dispatch(me(source)),
     logOut: () => dispatch(logout()),
   };
 };

@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { logout, me } from "../store";
 import { getPortfolio } from "../store/portfolio";
 import OrderForm from "./OrderForm";
 
@@ -84,9 +83,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    authentication: () => dispatch(me()),
     getPortfolio: (user) => dispatch(getPortfolio(user)),
-    logOut: () => dispatch(logout()),
   };
 };
 
