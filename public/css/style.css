@@ -96,6 +96,10 @@ body {
     text-transform: uppercase; }
     .stock-list li .col-1-of-2 {
       margin-bottom: 1rem; }
+      .stock-list li .col-1-of-2.left {
+        margin-right: 6rem; }
+      .stock-list li .col-1-of-2.right {
+        text-align: right; }
 
 .decrease {
   color: #f44336; }
@@ -181,5 +185,3 @@ nav .button-wrapper {
       margin-right: 6rem; }
   .row .col-1-of-2 {
     width: calc((100% - 7rem) / 2); }
-    .row .col-1-of-2.right {
-      text-align: right; }

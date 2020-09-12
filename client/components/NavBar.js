@@ -14,7 +14,6 @@ class Navbar extends React.Component {
 
   render() {
     const { isLoggedIn } = this.props;
-
     return (
       <div>
         <nav>

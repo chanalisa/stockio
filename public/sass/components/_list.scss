@@ -9,6 +9,14 @@
 
     .col-1-of-2 {
       margin-bottom: 1rem;
+
+      &.left {
+        margin-right: $gutter-horizontal;
+      }
+
+      &.right {
+        text-align: right;
+      }
     }
   }
 }

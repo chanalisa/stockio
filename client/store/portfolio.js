@@ -31,6 +31,7 @@ export const getPortfolio = (user) => async (dispatch) => {
     const { data } = await axios.post("/api/portfolio", user);
     dispatch(gotPortfolio(data));
   } catch (error) {
+    history.push("/login");
     console.error(error);
   }
 };

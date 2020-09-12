@@ -24,6 +24,7 @@ export const getTransactions = (user) => async (dispatch) => {
     const { data } = await axios.post("/api/transactions", user);
     dispatch(gotTransactions(data));
   } catch (error) {
+    history.push("/login");
     console.error(error);
   }
 };

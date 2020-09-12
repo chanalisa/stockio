@@ -54,7 +54,7 @@ class Portfolio extends React.Component {
                               : "no-change"
                           }
                         >
-                          <div className="col-1-of-2">
+                          <div className="col-1-of-2 left">
                             {stock.ticker}: {stock.quantity} Shares
                           </div>
                           <div className="col-1-of-2 right">
