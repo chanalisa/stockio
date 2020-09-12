@@ -76,6 +76,7 @@ class OrderForm extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return {
     error: state.portfolio.find((stock) => !stock.id),
     portfolio: state.portfolio,

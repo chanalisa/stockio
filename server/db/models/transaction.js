@@ -31,7 +31,7 @@ const Transaction = db.define("transaction", {
     allowNull: false,
     validate: {
       notEmpty: true,
-      min: 0,
+      min: 1,
     },
   },
   transactionType: {

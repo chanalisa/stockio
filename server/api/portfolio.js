@@ -97,7 +97,7 @@ router.put("/", getStockInfo, async (req, res, next) => {
       }
     }
   } catch (error) {
-    if (error.name === "SequelizeDatabaseError") {
+    if (error.name === "SequelizeDatabaseError" || "SequelizeValidationError") {
       res.status(401).send("Invalid Quantity");
     }
     console.error(error);

@@ -37,7 +37,7 @@ const Portfolio = db.define("portfolio", {
     allowNull: false,
     validate: {
       notEmpty: true,
-      min: 0,
+      min: 1,
     },
   },
 });

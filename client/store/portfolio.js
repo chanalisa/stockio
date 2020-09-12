@@ -44,7 +44,6 @@ export const buyStock = (order, user) => async (dispatch) => {
       error.response.data === "Invalid Quantity" ||
       error.response.data === "Insufficient Funds"
     ) {
-      console.log(errors.response);
       dispatch(boughtStock({ error }));
     }
   }
@@ -76,6 +75,14 @@ export default function (state = defaultPortfolio, action) {
           return stock;
         });
       } else {
+        // if (state[state.length - 1].error) {
+        //   console.log("here=======================================");
+        //   return [...state.slice(0, state.length - 1), action.newStock];
+        // }
+        console.log(
+          "here=======================================",
+          state[state.length - 1]
+        );
         return [...state, action.newStock];
       }
     default:
