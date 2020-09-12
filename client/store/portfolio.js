@@ -44,6 +44,7 @@ export const buyStock = (order, user) => async (dispatch) => {
       error.response.data === "Invalid Quantity" ||
       error.response.data === "Insufficient Funds"
     ) {
+      console.log(errors.response);
       dispatch(boughtStock({ error }));
     }
   }

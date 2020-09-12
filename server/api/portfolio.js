@@ -55,42 +55,45 @@ router.put("/", getStockInfo, async (req, res, next) => {
     if (userCashBalance < 0) {
       res.status(401).send("Insufficient Funds");
     } else {
-      // update user funds
-      const user = await User.findByPk(req.body.user.id);
-      user.update({
-        cash: userCashBalance,
-      });
       // create a new entry in the transactions table
       const newTransaction = await Transaction.create({
         ticker: req.stockInfo.symbol,
         companyName: req.stockInfo.companyName,
         priceAtTransaction: Math.round(req.stockInfo.latestPrice * 100),
-        quantity: req.body.quantity,
+        quantity: +req.body.quantity,
         userId: req.body.user.id,
       });
-      // looks for an entry in the portfolios table or create one if not found
-      const [stock, created] = await Portfolio.findOrCreate({
-        where: {
-          ticker: newTransaction.ticker,
-          userId: req.body.user.id,
-        },
-        defaults: {
-          ticker: req.stockInfo.symbol,
-          companyName: req.stockInfo.companyName,
-          currentPrice: Math.round(req.stockInfo.latestPrice * 100),
-          quantity: +req.body.quantity,
-          openPrice: Math.round(req.stockInfo.open * 100),
-          userId: req.body.user.id,
-        },
-      });
-      // if found, update the quantity
-      if (!created) {
-        stock.update({
-          quantity: stock.quantity + newTransaction.quantity,
-          currentPrice: Math.round(req.stockInfo.latestPrice * 100),
-          openPrice: Math.round(req.stockInfo.open * 100),
+      // checks if transaction is valid
+      if (newTransaction) {
+        // update user funds
+        const user = await User.findByPk(req.body.user.id);
+        user.update({
+          cash: userCashBalance,
         });
-        res.json(stock);
+        // looks for an entry in the portfolios table or create one if not found
+        const [stock, created] = await Portfolio.findOrCreate({
+          where: {
+            ticker: newTransaction.ticker,
+            userId: req.body.user.id,
+          },
+          defaults: {
+            ticker: req.stockInfo.symbol,
+            companyName: req.stockInfo.companyName,
+            currentPrice: Math.round(req.stockInfo.latestPrice * 100),
+            quantity: +req.body.quantity,
+            openPrice: Math.round(req.stockInfo.open * 100),
+            userId: req.body.user.id,
+          },
+        });
+        // if found, update the quantity
+        if (!created) {
+          stock.update({
+            quantity: stock.quantity + newTransaction.quantity,
+            currentPrice: Math.round(req.stockInfo.latestPrice * 100),
+            openPrice: Math.round(req.stockInfo.open * 100),
+          });
+          res.json(stock);
+        }
       }
     }
   } catch (error) {
