@@ -9,8 +9,8 @@ class Portfolio extends React.Component {
     super(props);
   }
 
-  async componentDidMount() {
-    await this.props.getPortfolio(this.props.user);
+  componentDidMount() {
+    this.props.getPortfolio(this.props.user);
   }
 
   render() {

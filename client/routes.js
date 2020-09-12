@@ -6,7 +6,7 @@ import { LogIn, Portfolio, SignUp, Transactions } from "./components";
 import { me } from "./store";
 class Routes extends Component {
   componentDidMount() {
-    this.props.loadInitialData("routes");
+    this.props.loadInitialData();
   }
 
   render() {
@@ -39,8 +39,8 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    loadInitialData(source) {
-      dispatch(me(source));
+    loadInitialData() {
+      dispatch(me());
     },
   };
 };

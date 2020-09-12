@@ -9,7 +9,7 @@ class Navbar extends React.Component {
   }
 
   componentDidMount() {
-    this.props.loadInitialData("nav");
+    this.props.loadInitialData();
   }
 
   render() {
@@ -51,7 +51,7 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    loadInitialData: (source) => dispatch(me(source)),
+    loadInitialData: () => dispatch(me()),
     logOut: () => dispatch(logout()),
   };
 };

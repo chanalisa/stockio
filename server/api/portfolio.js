@@ -93,7 +93,7 @@ router.put("/", getStockInfo, async (req, res, next) => {
             openPrice: Math.round(req.stockInfo.open * 100),
           });
         }
-        res.json(stock);
+        res.json({ stock, user });
       }
     }
   } catch (error) {

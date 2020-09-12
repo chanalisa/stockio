@@ -1,4 +1,5 @@
 import axios from "axios";
+import { me } from "../store";
 
 /**
  * ACTION TYPES
@@ -37,7 +38,8 @@ export const getPortfolio = (user) => async (dispatch) => {
 export const buyStock = (order, user) => async (dispatch) => {
   try {
     let res = await axios.put("/api/portfolio", { ...order, user });
-    dispatch(boughtStock(res.data));
+    dispatch(boughtStock(res.data.stock));
+    dispatch(me());
   } catch (buyError) {
     if (
       buyError.response.data === "Invalid Ticker" ||
