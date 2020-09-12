@@ -27,7 +27,6 @@ class OrderForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     this.props.buyStock(this.state, this.props.user);
-    this.props.getUser();
     this.setState({
       ticker: "",
       quantity: "",
@@ -76,7 +75,6 @@ class OrderForm extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     error: state.portfolio.find((stock) => !stock.id),
     portfolio: state.portfolio,
