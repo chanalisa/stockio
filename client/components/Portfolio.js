@@ -1,16 +1,23 @@
 import React from "react";
 import { connect } from "react-redux";
 
+import history from "../history";
 import { getPortfolio } from "../store/portfolio";
 import OrderForm from "./OrderForm";
 
 class Portfolio extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      loading: true,
+    };
   }
 
-  componentDidMount() {
-    this.props.getPortfolio(this.props.user);
+  async componentDidMount() {
+    await this.props.getPortfolio(this.props.user);
+    this.setState({
+      loading: false,
+    });
   }
 
   render() {
@@ -31,7 +38,9 @@ class Portfolio extends React.Component {
                 : ""}
             </h1>
             <div className="col-1-of-2">
-              {this.props.portfolio.length ? (
+              {this.state.loading ? (
+                <div className="loader"></div>
+              ) : this.props.portfolio.length ? (
                 <ul className="stock-list">
                   {this.props.portfolio.map((stock) => {
                     if (stock.id) {

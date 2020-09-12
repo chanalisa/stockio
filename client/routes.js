@@ -5,6 +5,9 @@ import { withRouter, Route, Switch } from "react-router-dom";
 import { LogIn, Portfolio, SignUp, Transactions } from "./components";
 import { me } from "./store";
 class Routes extends Component {
+  constructor(props) {
+    super(props);
+  }
   componentDidMount() {
     this.props.loadInitialData();
   }
