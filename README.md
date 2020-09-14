@@ -31,6 +31,7 @@ http://stockio.alisa.codes/
 
 ## 3. Objectives
 ### Design & Style Guide:
+![Image of Design & Style Guide for Stockio](https://github.com/chanalisa/stockio/blob/master/public/design-style-guide.png)
 
 ### User Stories:
 1. Users can create a new account with first name, last name, email, and password.
