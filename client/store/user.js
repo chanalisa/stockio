@@ -63,6 +63,7 @@ export const me = () => async (dispatch) => {
         Authorization: `Bearer ${token}`,
       },
     });
+    console.log("here----------------------");
     dispatch(gotUser(res.data));
   } catch (err) {
     dispatch(gotUser(defaultUser));

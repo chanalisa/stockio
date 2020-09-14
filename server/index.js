@@ -10,6 +10,7 @@ const db = require("./db/database");
 
 const app = express();
 const PORT = 8080;
+// const PORT = 80;
 
 // logging middleware
 app.use(morgan("dev"));
