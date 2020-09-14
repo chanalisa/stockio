@@ -2,12 +2,12 @@
 A mock stock web app built without boilerplate code!
 
 ## Table of Contents:
-### 1. [Demo](https://github.com/chanalisa/stockio#demo)
-### 2. [Tech Stack](https://github.com/chanalisa/stockio#tech-stack)
+### 1. [Demo](https://github.com/chanalisa/stockio#1-demo-1)
+### 2. [Tech Stack](https://github.com/chanalisa/stockio#2-tech-stack-1)
   - Frontend
   - Backend
   - Amazon Web Services (AWS)
-### 3. [Objectives](https://github.com/chanalisa/stockio#objectives)
+### 3. [Objectives](https://github.com/chanalisa/stockio#3-objectives-1)
   - Design & Style Guide
   - User Stories
 
