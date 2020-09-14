@@ -1,7 +1,15 @@
 # stockio: a mock stock app
+A mock stock web app built without boilerplate code!
+
+## Table of Contents:
+1. Demo
+2. Tech Stack
+3. Objectives
+
+## Demo
 http://stockio.alisa.codes/
 
-A mock stock Node.js web app built without boilerplate code!
+## Tech Stack
 ### Frontend:
 - Webpack (module bundler)
 - Sass (preprocessor)
@@ -15,6 +23,9 @@ A mock stock Node.js web app built without boilerplate code!
 ### Amazon Web Services (AWS):
 - Relational Database Service (RDS)
 - Elastic Compute Cloud (EC2)
+
+## Objectives
+### Design & Style Guide:
 
 ### User Stories:
 1. Users can create a new account with first name, last name, email, and password.
