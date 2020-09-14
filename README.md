@@ -2,14 +2,19 @@
 A mock stock web app built without boilerplate code!
 
 ## Table of Contents:
-1. Demo
-2. Tech Stack
-3. Objectives
+### 1. [Demo](https://github.com/chanalisa/stockio#demo)
+### 2. [Tech Stack](https://github.com/chanalisa/stockio#tech-stack)
+  - Frontend
+  - Backend
+  - Amazon Web Services (AWS)
+### 3. [Objectives](https://github.com/chanalisa/stockio#objectives)
+  - Design & Style Guide
+  - User Stories
 
-## Demo
+## 1. Demo
 http://stockio.alisa.codes/
 
-## Tech Stack
+## 2. Tech Stack
 ### Frontend:
 - Webpack (module bundler)
 - Sass (preprocessor)
@@ -24,7 +29,7 @@ http://stockio.alisa.codes/
 - Relational Database Service (RDS)
 - Elastic Compute Cloud (EC2)
 
-## Objectives
+## 3. Objectives
 ### Design & Style Guide:
 
 ### User Stories:
