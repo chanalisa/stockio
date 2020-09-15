@@ -90,7 +90,7 @@ body {
 .stock-list {
   max-height: 75vh;
   list-style: none;
-  overflow: scroll; }
+  overflow: auto; }
   .stock-list li {
     margin-bottom: 1rem;
     text-transform: uppercase; }
