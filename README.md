@@ -16,18 +16,18 @@ http://stockio.alisa.codes/
 
 ## 2. Tech Stack
 ### Frontend:
-- Webpack (module bundler)
-- Sass (preprocessor)
-- React
-- Redux
-- React Router
-- Axios
+- [Webpack](https://webpack.js.org/) (module bundler)
+- [Sass](https://sass-lang.com/) (preprocessor)
+- [React](https://reactjs.org/)
+- [Redux](https://redux.js.org/)
+- [React Router](https://reactrouter.com/)
+- [Axios](https://github.com/axios/axios)
 ### Backend:
-- Express
-- PostgreSQL
+- [Express](http://expressjs.com/)
+- [PostgreSQL](https://www.postgresql.org/)
 ### Amazon Web Services (AWS):
-- Relational Database Service (RDS)
-- Elastic Compute Cloud (EC2)
+- [Relational Database Service (RDS)](https://aws.amazon.com/rds/)
+- [Elastic Compute Cloud (EC2)](https://aws.amazon.com/ec2/)
 
 ## 3. Objectives
 ### Design & Style Guide:
